@@ -7,6 +7,6 @@ class ChangeColumnsToClients < ActiveRecord::Migration[5.2]
     change_column :clients, :phone_number, :string, null: false
     change_column :clients, :postal_code, :string, null: false
     change_column :clients, :street_address, :string, null: false
-    change_column :clients, :is_enabled, :boolean, default: true, null: false
+    change_column :clients, :deleted_at, :datetime
   end
 end

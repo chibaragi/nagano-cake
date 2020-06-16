@@ -7,6 +7,6 @@ class AddColumnsToClients < ActiveRecord::Migration[5.2]
     add_column :clients, :phone_number, :string
     add_column :clients, :postal_code, :string
     add_column :clients, :street_address, :string
-    add_column :clients, :is_enabled, :boolean, default: true
+    add_column :clients, :deleted_at, :datetime
   end
 end
