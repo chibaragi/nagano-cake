@@ -15,5 +15,4 @@ class ClientsControllerTest < ActionDispatch::IntegrationTest
     get clients_edit_url
     assert_response :success
   end
-
 end
