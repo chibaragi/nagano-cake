@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   devise_for :admins
   devise_for :clients
 
@@ -37,16 +36,16 @@ Rails.application.routes.draw do
   end
 
   namespace :admins do
-   # get "admins/" => "devise/sessions#new"
+    # get "admins/" => "devise/sessions#new"
     get 'admins/show'
     get 'admins/index'
   end
 
   scope module: :clients do
-  	get "clients" => "clients#show"
-  	get "clients/withdrawal" => "clients#withdrawal"
-  	patch "clients/withdrawal" => "clients#withdrawal"
-  	get "clients/edit" => "clients#edit"
+    get "clients" => "clients#show"
+    get "clients/withdrawal" => "clients#withdrawal"
+    patch "clients/withdrawal" => "clients#withdrawal"
+    get "clients/edit" => "clients#edit"
   end
 
   scope module: :clients do
@@ -57,7 +56,7 @@ Rails.application.routes.draw do
     post "inside_carts" => "inside_carts#create"
   end
 
-   scope module: :clients do
+  scope module: :clients do
     get 'shipping_addresses/new'
     get 'shipping_addresses/:id/edit' => "shipping_addresses#edit"
     post 'shipping_addresses' => "shipping_addresses#create"
@@ -75,5 +74,4 @@ Rails.application.routes.draw do
   namespace :admins do
     patch "product_orders/:id" => "product_orders#update"
   end
-
- end
+end

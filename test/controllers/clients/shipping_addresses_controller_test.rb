@@ -10,5 +10,4 @@ class Clients::ShippingAddressesControllerTest < ActionDispatch::IntegrationTest
     get clients_shipping_addresses_edit_url
     assert_response :success
   end
-
 end

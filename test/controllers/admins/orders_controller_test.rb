@@ -15,5 +15,4 @@ class Admins::OrdersControllerTest < ActionDispatch::IntegrationTest
     get admins_orders_show_url
     assert_response :success
   end
-
 end

@@ -10,5 +10,4 @@ class Admins::GenresControllerTest < ActionDispatch::IntegrationTest
     get admins_genres_edit_url
     assert_response :success
   end
-
 end

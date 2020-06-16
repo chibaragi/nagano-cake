@@ -20,5 +20,4 @@ class Clients::ProductsControllerTest < ActionDispatch::IntegrationTest
     get clients_products_genre_products_url
     assert_response :success
   end
-
 end

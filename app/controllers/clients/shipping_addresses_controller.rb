@@ -13,5 +13,4 @@ class Clients::ShippingAddressesController < ApplicationController
 
   def destroy
   end
-
 end

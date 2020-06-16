@@ -5,5 +5,4 @@ class Clients::InsideCartsControllerTest < ActionDispatch::IntegrationTest
     get clients_inside_carts_index_url
     assert_response :success
   end
-
 end

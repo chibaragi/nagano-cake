@@ -10,5 +10,4 @@ class Admins::GenresController < ApplicationController
 
   def update
   end
-
 end
