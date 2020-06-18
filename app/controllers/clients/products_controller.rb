@@ -10,15 +10,14 @@ class Clients::ProductsController < ApplicationController
   end
 
   def top
-
+    @genres = Genre.all
+    @products=Product.all
   end
 
   def genre_products
   end
 
 
-  def _genre_serch_form
-  	@genres = Genre.all
 
   private
 

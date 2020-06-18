@@ -31,10 +31,12 @@ Rails.application.routes.draw do
   end
 
   scope module: :clients do
+    # ここから飯田が変更しました（resourcesより先に書くこと）
+    post "orders/pre_create" => "orders#pre_create"
+    get "orders/confirm_order" => "orders#confirm_order"
+    get "orders/after_order" => "orders#after_order"
+    # ここまで
     resources :orders, only: [:new, :show, :create, :index]
-    get "orders/pre_create"
-    get "orders/confirm_order"
-    get "orders/after_order"
   end
   scope module: :clients do
     resources :clients, only: [:show, :edit]

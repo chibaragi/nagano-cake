@@ -27,3 +27,8 @@ client1=Client.find_by(id: 1)
 # client1.shipping_addresses.build(:receive_name => "佐々木希", :postal_code =>"4444444", :street_address => "東京都渋谷区道玄坂4-4-4")
 # client1.save
 
+# client1.orders.build(:receive_name => "田中太郎", :postal_code =>"1111111", :street_address => "東京都豊島区西池袋1-1-1",:postage =>800, :payment => 2, :total_price => 3500, :order_status => 1)
+#  client1.save
+
+#  client1.orders.build(:receive_name => "千葉らぎ", :postal_code =>"1234567", :street_address => "千葉県銚子市長野町123-456",:postage =>800, :payment => 1, :total_price => 2300, order_status => 0)
+#  client1.save

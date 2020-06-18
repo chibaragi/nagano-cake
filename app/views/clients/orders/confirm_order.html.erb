@@ -75,6 +75,8 @@
     </div>
     <div class="row">
       <div class="col-xs-offset-5">
-        <a class="btn btn-success " href="#" role="button">購入を確定する</a>
+        <%#= form_for @order, url: orders_path do |f| %>
+              <%#= f.submit "注文を確定する",class:"btn btn-primary col-xs-12" %>
+        <%# end %>
       </div>
     </div>
