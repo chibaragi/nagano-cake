@@ -1,10 +1,7 @@
 class Clients::ProductsController < ApplicationController
-<<<<<<< HEAD
   def index
     @products = Product.page(params[:page]).reverse_order
   end
-=======
->>>>>>> develop
 
   def show
   	product = Product.find(params[:id])
@@ -16,6 +13,10 @@ class Clients::ProductsController < ApplicationController
 
   def genre_products
   end
+
+
+  def _genre_serch_form
+  	@genres = Genre.all
 
   private
 

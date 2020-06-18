@@ -1,17 +1,6 @@
 Rails.application.routes.draw do
 
   devise_for :admins, :controllers => {
-     registrations: 'admins/registrations',
-     sessions: 'admins/sessions'
-   }
-  devise_for :clients, :controllers => {
-     registrations: 'clients/registrations',
-     sessions: 'clients/sessions',
-     confirmations: 'clients/confirmations',
-     mailer: 'clients/mailer',
-     passwords: 'clients/passwords',
-     shared: 'clients/shared',
-     unlocks: 'clients/unlocks'
      registrations: "admins/registrations",
      sessions: "admins/sessions"
    }
@@ -33,13 +22,7 @@ Rails.application.routes.draw do
   end
   scope module: :clients do
     resources :products, only: [:show, :index]
-    get “genres/:id/genre_products”  => "products#genre_products”
-  end
-
-  scope module: :clients do
-    resources :jenres, only: [:show, :index]
-    get "products/genre_products"
-    get "genres/:id/genre_products" => 'products#genre_products'
+    get "genres/:id/genre_products" => "products#genre_products"
   end
 
   namespace :admins do
@@ -49,7 +32,6 @@ Rails.application.routes.draw do
 
   scope module: :clients do
     resources :orders, only: [:new, :show, :create, :index]
-    get 'orders/after_order'
     get "orders/pre_create"
     get "orders/confirm_order"
     get "orders/after_order"
@@ -66,13 +48,6 @@ Rails.application.routes.draw do
 
   scope module: :clients do
     resources :shipping_addresses, only: [:new, :create, :edit, :update, :destroy]
-  end
-
-  namespace :admins do
-    resources :genres, only: [:create, :index, :update, :edit]
-  end
-
-  namespace :admins do
   end
 
   namespace :admins do
