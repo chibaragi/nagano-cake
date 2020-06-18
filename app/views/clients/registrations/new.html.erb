@@ -2,7 +2,6 @@
 
  <%= form_for(resource, as: resource_name, url: client_registration_path) do |f| %>
  <%= devise_error_messages! %>
-
   <div class="field">
     <%= f.label :名前 %><br />
     <%= f.label :（姓） %>
@@ -63,3 +62,4 @@
 <%= link_to "こちら", new_client_session_path %>
 <span> からログインしてください。</span>
 <p id="notice"><%= notice %></p>
+
