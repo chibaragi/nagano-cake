@@ -1,7 +1,10 @@
 class Clients::ProductsController < ApplicationController
+<<<<<<< HEAD
   def index
     @products = Product.page(params[:page]).reverse_order
   end
+=======
+>>>>>>> develop
 
   def show
   	product = Product.find(params[:id])
