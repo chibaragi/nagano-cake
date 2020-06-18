@@ -20,6 +20,7 @@
                 <%= link_to client_path(current_client),class:"nav-item" do %><i class="glyphicon glyphicon-home home"></i>&emsp;マイページ<% end %>
               </li>
               <li>
+
                 <%= link_to products_path,class:"nav-item" do %><i class="glyphicon glyphicon-user users"></i>&emsp;商品一覧<% end %>
               </li>
               <li>
@@ -47,11 +48,8 @@
                 </li>
               <% else %>
                   <li>
-<<<<<<< HEAD
+
                 <%= link_to products_path ,class:"nav-item" do %><i class="glyphicon glyphicon-cutlery"></i>&emsp;商品一覧<% end %>
-=======
-                <%= link_to root_path ,class:"nav-item" do %><i class="glyphicon glyphicon-cutlery"></i>&emsp;商品一覧<% end %>
->>>>>>> develop
                 </li>
                 <li>
                   <%= link_to new_client_registration_path ,class:"nav-item" do %><i class="glyphicon glyphicon-edit"></i>&emsp;新規登録<% end %>
@@ -64,10 +62,7 @@
         </nav>
       </div>
     </header>
-<<<<<<< HEAD
 
-=======
->>>>>>> develop
     <main>
       <div class="container main-container">
         <%# フラッシュメッセージ %>
@@ -78,10 +73,7 @@
         <%= yield %>
       </div>
     </main>
-<<<<<<< HEAD
 
-=======
->>>>>>> develop
     <footer>
       <div class="container">
         <div class="row">

@@ -1,2 +1,47 @@
 <h1>Clients::ShippingAddresses#new</h1>
 <p>Find me in app/views/clients/shipping_addresses/new.html.erb</p>
+
+<h2>配送先登録/一覧</h2>
+
+<form class="container">
+	<dl>
+		<div class="form-item">
+			<dt>郵便番号(ハイフンなし)</dt>
+			<dd><input type="text" name="postal code"></dd>
+		</div>
+
+		<div class="form-item">
+			<dt>住所</dt>
+			<dd><input type="text" name="adress"></dd>
+		</div>
+
+		<div class="form-item">
+			<dt>宛名</dt>
+			<dd><input type="text" name="receive_name"></dd>
+		</div>
+	</dl>
+	<div class="form-submit">
+		<input type="submit" value="登録する">
+	</div>
+</form>
+
+<table>
+	<tr>
+		<th>郵便番号</th>
+		<th>住所</th>
+		<th>宛名</th>
+		<th>&nbsp;</th>
+	</tr>
+	<tr>
+		<td>2440812</td>
+		<td>神奈川県横浜市戸塚区柏尾3-9-10</td>
+		<td>梅木匠</td>
+		<td><input type="button" value="編集する"><input type="button" value="削除する"></td>
+	</tr>
+	<tr>
+		<td>4001114</td>
+		<td>山梨県甲斐市打返4-15-19</td>
+		<td>小沢時夫</td>
+		<td><input type="button" value="編集する"><input type="button" value="削除する"></td>
+	</tr>
+</table>
