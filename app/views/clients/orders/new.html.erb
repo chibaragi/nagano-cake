@@ -18,6 +18,13 @@
           <tr>
             <th scope="row">お届け先</th>
             <td>
+
+          <%# 選択タグデモ %>
+          <%= f.select :street_address, {'男性': 1, '女性': 2},  { class: 'form-control' , required: true } %>
+
+          <%= f.select :street_address, options_for_select(@shipping_addresses.map{|c|[c[:name], c[:id]]}), {},  { class: 'form-control' , required: true } %>
+
+
             <%# ここからデモ %>
               <div class="radio">
                 <%= radio_button_tag(:client_address, :radio1) %>
@@ -39,7 +46,6 @@
     
 
               
-
             </td>
           </tr>
         </tbody>
@@ -85,3 +91,7 @@
   </div>
 <% end %>
 <p><%= @demo %></p>
+
+
+
+

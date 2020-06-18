@@ -2,11 +2,10 @@ class Clients::OrdersController < ApplicationController
   before_action :authenticate_client!
   def new
     @order=Order.new
-    
-    # デモ
     @client=Client.find(current_client.id)
     @shipping_addresses=@client.shipping_addresses
 
+    # デモ
     if params[:client_address]
       @demo="ご自身の住所を選びました"
     elsif params[:create_address]
@@ -16,7 +15,7 @@ class Clients::OrdersController < ApplicationController
     else
       @demo="選択してください"
     end
-    
+
   end
 
   def pre_create
