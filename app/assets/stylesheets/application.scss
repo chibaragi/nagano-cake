@@ -13,8 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
  @import "bootstrap-sprockets"; 
  @import "bootstrap";     
+
  /* 全体 */
  * {
    margin: 0;
@@ -48,4 +50,5 @@
      display:block;
      width: 100%;
    }
+
  }
