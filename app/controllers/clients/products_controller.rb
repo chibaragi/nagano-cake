@@ -10,4 +10,8 @@ class Clients::ProductsController < ApplicationController
 
   def genre_products
   end
+
+  def _genre_serch_form
+  	@genres = Genre.all
+  end
 end
