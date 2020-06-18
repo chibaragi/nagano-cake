@@ -1,7 +1,11 @@
 class Clients::ProductsController < ApplicationController
+<<<<<<< HEAD
+  # before_action :authenticate_client!, only: [:show, :index]
   def index
     @products = Product.page(params[:page]).reverse_order
   end
+=======
+>>>>>>> develop
 
   def show
   	product = Product.find(params[:id])
