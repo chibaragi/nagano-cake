@@ -13,12 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
  @import "bootstrap-sprockets"; 
  @import "bootstrap";     
-<<<<<<< HEAD:app/assets/stylesheets/application.scss
 
-=======
->>>>>>> develop:app/assets/stylesheets/application.css
  /* 全体 */
  * {
    margin: 0;
@@ -52,8 +50,5 @@
      display:block;
      width: 100%;
    }
-<<<<<<< HEAD:app/assets/stylesheets/application.scss
+
  }
-=======
- }
->>>>>>> develop:app/assets/stylesheets/application.css
