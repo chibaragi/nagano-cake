@@ -1,2 +1,97 @@
-<h1>Clients::Orders#new</h1>
-<p>Find me in app/views/clients/orders/new.html.erb</p>
+<div class="row">
+  <h2>注文情報入力</h2>
+  <div class="col-xs-12" style="margin-top: 50px;">
+   <%= form_for @order do |f| %>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">支払い方法</th>
+            <td>
+              <div class="radio">
+                <%= f.radio_button :order_status, 0 %>
+                <%= f.label :order_status, "クレジットカード" %>
+                <%= f.radio_button :order_status, 1 %>
+                <%= f.label :order_status, "銀行振込" %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">お届け先</th>
+            <td>
+
+          <%# 選択タグデモ %>
+          <%= f.select :street_address, {'男性': 1, '女性': 2},  { class: 'form-control' , required: true } %>
+
+          <%= f.select :street_address, options_for_select(@shipping_addresses.map{|c|[c[:name], c[:id]]}), {},  { class: 'form-control' , required: true } %>
+
+
+            <%# ここからデモ %>
+              <div class="radio">
+                <%= radio_button_tag(:client_address, :radio1) %>
+                <%= label_tag(:client_address, "ご自身の住所") %>
+                <p><%= @client.postal_code %><%= @client.street_address %></p>
+                <p><%= @client.first_name %><%= @client.last_name %></p>
+              </div>
+
+              <div class="radio">
+                <%= radio_button_tag(:registrated_address, :radio2) %>
+                <%= label_tag(:create_address, "新しいお届け先") %>
+              </div>
+
+
+              <div class="radio">
+                <%= radio_button_tag(:create_address, :radio3) %>
+                <%= label_tag(:registrated_address, "登録済住所から選択") %>
+              </div>
+    
+
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="col-xs-offset-5">
+        <%= f.submit "確認画面へ進む",class:"btn btn-primary col-xs-12" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<%# デモ %>
+<table>  
+  <tbody>
+    <% @shipping_addresses.each do |shipping_address| %>
+      <tr>
+        <td><%= shipping_address.receive_name %></td>
+        <td><%= shipping_address.postal_code %></td>
+        <td><%= shipping_address.street_address %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<%= form_tag(controller: "orders", action: "new") do %>
+  <div class="radio">
+    <%= radio_button_tag(:client_address, :radio1) %>
+    <%= label_tag(:client_address, "ご自身の住所") %>
+  </div>
+  <div class="radio">
+    <%= radio_button_tag(:registrated_address, :radio2) %>
+    <%= label_tag(:create_address, "新しいお届け先") %>
+  </div>
+  <div class="radio">
+    <%= radio_button_tag(:create_address, :radio3) %>
+    <%= label_tag(:registrated_address, "登録済住所から選択") %>
+  </div>
+  <div>
+    <%= submit_tag("送信") %>
+  </div>
+<% end %>
+<p><%= @demo %></p>
+
+
+
+
