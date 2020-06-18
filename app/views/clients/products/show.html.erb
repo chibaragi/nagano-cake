@@ -1,2 +1,17 @@
-<h1>Clients::Products#show</h1>
-<p>Find me in app/views/clients/products/show.html.erb</p>
+<div class="row">
+	<div class="col-xs-9">
+		<div class="product-image">
+			<%= attachment_image_tag(product, :image, :fill, 200, 300, fallback: "no-image.jpg") %>
+		</div>
+		<div class="detail">
+			<h2><%= product.name %></h2>
+			<p><%= product.explanation %></p>
+			<h3><%= product.price %><span>（税込）</span></h3>
+		</div>
+		<%= form_for product do |f| %>
+		<%= f.label :quantity, "個数選択"
+		<%= f.select :quantity, [1,2,3,4,5] %>
+
+
+	</div>
+</div>

@@ -1,77 +1,71 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  devise_for :clients
+
+  devise_for :admins, :controllers => {
+     registrations: 'admins/registrations',
+     sessions: 'admins/sessions'
+   }
+  devise_for :clients, :controllers => {
+     registrations: 'clients/registrations',
+     sessions: 'clients/sessions',
+     confirmations: 'clients/confirmations',
+     mailer: 'clients/mailer',
+     passwords: 'clients/passwords',
+     shared: 'clients/shared',
+     unlocks: 'clients/unlocks'
+   }
 
   root "clients/products#top"
 
   namespace :admins do
-    get 'products' => "products#index"
-    get 'products/new'
-    get 'products/:id' => "products#show"
-    get 'products/:id/edit' => "products#edit"
-    post "products" => "products#create"
-    patch "products/:id" => "products#update"
+    resources :products, only: [:new, :show, :create, :edit, :index, :update]
   end
 
   scope module: :clients do
-    get 'products' => "products#index"
-    get 'products/:id' => "products#show"
-    get 'products/genre_products'
+    resources :products, only: [:show, :index]
+    get “genres/:id/genre_products”  => "products#genre_products”
+  end
+
+  scope module: :clients do
+    resources :jenres, only: [:show, :index]
+    get "products/genre_products"
   end
 
   namespace :admins do
-    get 'orders' => "orders#index"
+    resources :orders, only: [:show, :index, :update]
     get 'orders/top' => "orders#top"
-    get 'orders/show/:id' => "orders#show"
-    patch "orders/update/:id" => "orders#update"
   end
 
   scope module: :clients do
-    get 'orders/new'
+    resources :orders, only: [:new, :show, :create, :index]
     get 'orders/pre_create'
     get 'orders/confirm_order'
     get 'orders/after_order'
-    get 'orders' => "orders#index"
-    get 'orders/:id' => "orders#show"
-  end
-
-  namespace :admins do
-    # get "admins/" => "devise/sessions#new"
-    get 'admins/show'
-    get 'admins/index'
   end
 
   scope module: :clients do
-    get "clients" => "clients#show"
+    resources :clients, only: [:show, :edit]
     get "clients/withdrawal" => "clients#withdrawal"
     patch "clients/withdrawal" => "clients#withdrawal"
-    get "clients/edit" => "clients#edit"
   end
 
   scope module: :clients do
-    get 'inside_carts' => "inside_carts#index"
-    patch "inside_carts/:id" => "inside_carts#update"
-    delete "inside_carts/:id" => "inside_carts#destroy"
+    resources :inside_carts, only: [:create, :index, :update, :destroy]
     delete "inside_carts" => "inside_carts#destroy_all"
-    post "inside_carts" => "inside_carts#create"
   end
 
   scope module: :clients do
-    get 'shipping_addresses/new'
-    get 'shipping_addresses/:id/edit' => "shipping_addresses#edit"
-    post 'shipping_addresses' => "shipping_addresses#create"
-    patch 'shipping_addresses/:id/' => "shipping_addresses#update"
-    delete 'shipping_addresses/:id' => "shipping_addresses#destroy"
+    resources :shipping_addresses, only: [:new, :create, :edit, :update, :destroy]
   end
 
   namespace :admins do
-    get 'genres' => "genres#index"
-    post "genres" => "genres#create"
-    get "genres/:id/edit" => "genres#edit"
-    patch "genres/:id" => "genres#update"
+    resources :genres, only: [:create, :index, :update, :edit]
   end
 
   namespace :admins do
-    patch "product_orders/:id" => "product_orders#update"
+    resources :inside_carts, only: [:update]
+  end
+
+  namespace :admins do
+    resources :clients, only: [:show, :index]
   end
 end
