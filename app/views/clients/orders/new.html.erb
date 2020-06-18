@@ -22,7 +22,10 @@
           <%# 選択タグデモ %>
           <%= f.select :street_address, {'男性': 1, '女性': 2},  { class: 'form-control' , required: true } %>
 
-          <%= f.select :street_address, options_for_select(@shipping_addresses.map{|c|[c[:name], c[:id]]}), {},  { class: 'form-control' , required: true } %>
+        
+          <%= select_tag 'shipping_address_select_tag', options_for_select({sample1: 1, sample2: 2, sample3: 3}, 1) %>
+
+          
 
 
             <%# ここからデモ %>
