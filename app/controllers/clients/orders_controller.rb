@@ -66,6 +66,16 @@ class Clients::OrdersController < ApplicationController
     else
       redirect_back(fallback_location: root_path)
     end
+
+
+     # @order=Order.new(order_params)
+    # if @order.save
+      # flash[:create] = ""
+    #   redirect_to orders_confirm_order_path
+    # else
+      # flash.now[:alert_precreate] = ""
+    #   redirect_back(fallback_location: root_path)
+    # end
   end
 
   def after_order
