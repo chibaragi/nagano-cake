@@ -35,22 +35,30 @@ class Clients::OrdersController < ApplicationController
       @shipping_address.postal_code=order_params[:postal_code]
       @shipping_address.street_address=order_params[:street_address]
       @shipping_address.receive_name=order_params[:receive_name]
-      # @shipping_address.save
-      # バリデーションかフラッシュメッセージ書く／正規表現
+      @shipping_address.save
+      # （todo)バリデーションかフラッシュメッセージ書く／正規表現
       redirect_to orders_confirm_order_path
     else #どのラジオボタンも選択されていないときは同じページに返す
-      # バリデーションかフラッシュメッセージ書く
+      # （todo)バリデーションかフラッシュメッセージ書く
       redirect_back(fallback_location: root_path)
     end
   end
 
   def confirm_order
-
+    @inside_carts= current_client.inside_carts.all
+    @order=Order.new(
+      payment: session[:payment].to_i, 
+      receive_name: session[:receive_name],
+      postal_code: session[:postal_code],
+      street_address: session[:street_address],
+      postage:800,
+    ) 
   end
 
   def create
+    # （todo)paymentとorder_statusがまんま文字が入っちゃうのなおす
     @order=Order.new(
-      payment: session[:payment], 
+      payment: session[:payment].to_i, 
       receive_name: session[:receive_name],
       postal_code: session[:postal_code],
       street_address: session[:street_address],
@@ -58,19 +66,25 @@ class Clients::OrdersController < ApplicationController
       order_status:0,
       client_id:current_client.id
     ) 
-    @order.total_price=1000
-
-    if @order.save
-      # セッション削除 .clear
+    # （todo)下記うまくいかない。sumはビュー側でやってたがカラムに保存しなきゃいけないがやり方わからない
+    # @order.total_price=@sum + @order.postage
+    #  byebug
+     if @order.save
+      # セッション削除
+      session[:payment].clear
+      session[:postal_code].clear
+      session[:street_address].clear
+      session[:receive_name].clear    
       # 注文商品テーブルに代入
+      # @order.order_products.quantity=@order.client.inside_carts.find(わからん).quantity
+
       # カートをからに
+
       redirect_to orders_after_order_path
-    else
-      redirect_back(fallback_location: root_path)
+     else
+    # （todo)フラッシュメッセージ書く
+     redirect_back(fallback_location: root_path)
     end
-
-
-    
   end
 
   def after_order

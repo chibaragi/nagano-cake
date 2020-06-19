@@ -12,7 +12,7 @@
 
 # Client.create!(:email => 'hokkaido@yahoo.co.jp', :password => 'bbbbbb', :first_name => "北海", :last_name => "道", :first_name_kana => "ホッカイ", :last_name_kana => "ドウ", :phone_number => "09876543211", :postal_code => "0987654", :street_address => "千葉県銚子市長野町098-7654" )
 
-client1=Client.find_by(id: 1)
+# client1=Client.find_by(id: 1)
 # client1.shipping_addresses.build(:receive_name => "田中太郎", :postal_code =>"1111111", :street_address => "東京都豊島区西池袋1-1-1")
 # client1.save
 
@@ -32,3 +32,17 @@ client1=Client.find_by(id: 1)
 
 #  client1.orders.build(:receive_name => "千葉らぎ", :postal_code =>"1234567", :street_address => "千葉県銚子市長野町123-456",:postage =>800, :payment => 1, :total_price => 2300, order_status => 0)
 #  client1.save
+
+# Product.create!(:genre_id => 1, :name => 'いちごのショートケーキ', :price => 1100, :explanation => "定番の甘くて美味しいイチゴのショートケーキです。", :image_id => "", :is_enabled => true)
+
+# Product.create!(:genre_id => 2, :name => 'かぼちゃのプリン', :price => 500, :explanation => "濃厚なかぼちゃのプリンです。", :image_id => "", :is_enabled => true)
+
+# Product.create!(:genre_id => 3, :name => 'マドレーヌ', :price => 330, :explanation => "3時のおやつにマドレーヌをどうぞ。", :image_id => "", :is_enabled => true)
+
+# Product.create!(:genre_id => 4, :name => 'ブドウキャンディ', :price => 250, :explanation => "ブドウキャンディの詰め合わせです。", :image_id => "", :is_enabled => true)
+
+
+InsideCart.create!(:client_id => 1, :product_id => 1, :quantity => 1)
+InsideCart.create!(:client_id => 1, :product_id => 2, :quantity => 2)
+InsideCart.create!(:client_id => 1, :product_id => 3, :quantity => 1)
+InsideCart.create!(:client_id => 1, :product_id => 4, :quantity => 3)

@@ -3,5 +3,4 @@ class ShippingAddress < ApplicationRecord
   def full_address
     [postal_code, street_address, receive_name].join('')
   end
-
 end
