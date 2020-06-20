@@ -20,7 +20,7 @@ class Clients::ProductsController < ApplicationController
 
   def _genre_serch_form
   	@genres = Genre.all
-
+  end
   private
 
   def product_params

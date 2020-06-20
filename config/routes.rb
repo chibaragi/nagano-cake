@@ -37,9 +37,9 @@ Rails.application.routes.draw do
     get "orders/after_order"
   end
   scope module: :clients do
-    resources :clients, only: [:show, :edit]
     get "clients/withdrawal" => "clients#withdrawal"
     patch "clients/withdrawal" => "clients#withdrawal"
+    resources :clients, only: [:show, :edit, :update]
   end
   scope module: :clients do
     resources :inside_carts, only: [:create, :index, :update, :destroy]
