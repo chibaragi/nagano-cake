@@ -36,11 +36,13 @@ Rails.application.routes.draw do
     get "orders/confirm_order"
     get "orders/after_order"
   end
+  #ページ推移の関係で順番を入れ替えてます。あとupdateを追加してます。byけんちゃん　－－ここからーー
   scope module: :clients do
     get "clients/withdrawal" => "clients#withdrawal"
     patch "clients/withdrawal" => "clients#withdrawal"
-    resources :clients, only: [:show, :edit, :update]
+    resources :clients, only: [:show, :edit, :update, :destroy]
   end
+  #ーーここまでーー
   scope module: :clients do
     resources :inside_carts, only: [:create, :index, :update, :destroy]
     delete "inside_carts" => "inside_carts#destroy_all"
