@@ -26,12 +26,14 @@ Rails.application.routes.draw do
   end
 
   namespace :admins do
-    resources :orders, only: [:show, :index, :update]
+    # ここから飯田が変更しました（resourcesより先に書かないとうまく表示されないため）
     get "orders/top" => "orders#top"
+    resources :orders, only: [:show, :index, :update]
+    # ここまで
   end
 
   scope module: :clients do
-    # ここから飯田が変更しました（resourcesより先に書くこと）
+    # ここから飯田が変更しました（resourcesより先に書く/postに変更/=>以降記載）
     post "orders/pre_create" => "orders#pre_create"
     get "orders/confirm_order" => "orders#confirm_order"
     get "orders/after_order" => "orders#after_order"

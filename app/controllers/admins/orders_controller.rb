@@ -3,6 +3,8 @@ class Admins::OrdersController < ApplicationController
   end
 
   def top
+    @orders=Order.where(created_at: Date.today)
+
   end
 
   def show

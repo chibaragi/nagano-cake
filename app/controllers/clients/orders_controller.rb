@@ -51,12 +51,22 @@ class Clients::OrdersController < ApplicationController
       receive_name: session[:receive_name],
       postal_code: session[:postal_code],
       street_address: session[:street_address],
-      postage:800,
+      postage:800
     ) 
+    @sum  = 0
+    @subtotals = @inside_carts.map {|inside_cart|  Product.find(inside_cart.product_id).price * inside_cart.quantity } 
+    @sum = @subtotals.sum
+    # 上記は下記と同じ意味合い
+    # @sum  = 0
+    # @inside_carts.each do |inside_cart|
+    #   @subtotal =  Product.find(inside_cart.product_id).price * inside_cart.quantity 
+    #   @sum += @subtotal
+    # end 
+    session[:sum] =  @sum
   end
-
+  
   def create
-    # （todo)paymentとorder_statusがまんま文字が入っちゃうのなおす
+    # （todo1)paymentとorder_statusがまんま文字が入っちゃうのなおす
     @order=Order.new(
       payment: session[:payment].to_i, 
       receive_name: session[:receive_name],
@@ -65,35 +75,48 @@ class Clients::OrdersController < ApplicationController
       postage:800,
       order_status:0,
       client_id:current_client.id
-    ) 
-    # （todo)下記うまくいかない。sumはビュー側でやってたがカラムに保存しなきゃいけないがやり方わからない
-    # @order.total_price=@sum + @order.postage
-    #  byebug
-     if @order.save
-      # セッション削除
-      session[:payment].clear
-      session[:postal_code].clear
-      session[:street_address].clear
-      session[:receive_name].clear    
-      # 注文商品テーブルに代入
-      # @order.order_products.quantity=@order.client.inside_carts.find(わからん).quantity
-
-      # カートをからに
-
-      redirect_to orders_after_order_path
+      ) 
+      @order.total_price = session[:sum] + @order.postage
+       if @order.save
+      # 注文商品テーブルに代入  
+      @order.client.inside_carts.each do |i|
+        @product_order = @order.product_orders.build  
+        @product_order.order_id = @order.id
+        @product_order.product_order_status = 0
+        @product_order.product_id = i.product_id
+        @product_order.quantity = i.quantity
+        @product_order.once_price = i.product.price
+        @product_order.save
+       end 
+       # カートを空に
+       @order.client.inside_carts.destroy_all
+       # セッション削除
+       session[:payment].clear
+       session[:receive_name].clear    
+       session[:postal_code].clear
+       session[:street_address].clear
+       session.delete(:sum)
+    redirect_to orders_after_order_path
      else
     # （todo)フラッシュメッセージ書く
-     redirect_back(fallback_location: root_path)
-    end
+       redirect_back(fallback_location: root_path)
+     end
   end
 
   def after_order
   end
 
   def index
+    @orders = current_client.orders.all
   end
 
   def show
+    @order=Order.find(params[:id])
+    @product_orders = @order.product_orders.all
+    # 下記３行は商品合計を出すため
+    @sum  = 0
+    @subtotals = @product_orders.map {|product_order|  product_order.once_price * product_order.quantity  } 
+    @sum = @subtotals.sum
   end
 
   private
