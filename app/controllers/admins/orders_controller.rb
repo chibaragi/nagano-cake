@@ -22,8 +22,7 @@ class Admins::OrdersController < ApplicationController
     @order = Order.find(params[:order][:id])
     if @order.update(params_int(order_params))
       flash[:success] = "注文ステータスを更新しました"
-      # 注文ステータスが「入金確認」になったら紐づく製作ステータス全てを「製作待ち」に自動更新(モデルに定義)
-      @order.order_status_is_deposited?
+      order_status_is_deposited?(@order)
       redirect_back(fallback_location: root_path)
     else
       flash[:danger] = "注文ステータスの更新に失敗しました"
@@ -34,12 +33,10 @@ class Admins::OrdersController < ApplicationController
   def product_orders_status_update
     @product_order = ProductOrder.find(params[:product_order][:id])
     if @product_order.update(params_int(product_order_params))
-      flash[:success] = "製作ステータスを更新しました"
-      # 製作ステータスが一つでも「製作中」になったら注文ステータスが「製作中」に自動更新（モデルに定義）
-      @product_order.product_order_status_is_in_production?
-      # 製作ステータスが全部「製作完了」になったら注文ステータスが「発送準備中」に自動更新（モデルに定義）
+      flash[:info] = "製作ステータスを更新しました"
+      product_order_status_is_in_production?(@product_order)
       @order = Order.find_by(id:params[:product_order][:order_id])
-      @order.product_order_status_is_production_complete?
+      product_order_status_is_production_complete?(@order)
       redirect_back(fallback_location: root_path)
     else
       flash[:danger] = "製作ステータスの更新に失敗しました"
@@ -56,7 +53,7 @@ class Admins::OrdersController < ApplicationController
     params.require(:product_order).permit(:product_order_status,:id)
   end
 
-  # 以下２つは、update時、formから送られてくる値がデフォルトでstringなのでintegerに変換するためのもの。まずはそもそも整数にできるか調べる（Integer()で変換できれば数値、例外発生したら違う）
+  # 以下２つは、update時formから送られてくる値がデフォルトでstringなのでintegerに変換するためのもの。まずはそもそも整数にできるか調べる（Integer()で変換できれば数値、例外発生したら違う）
   def integer_string?(str)
     Integer(str)
     true
@@ -69,6 +66,30 @@ class Admins::OrdersController < ApplicationController
       if integer_string?(value)
         order_params[key]=value.to_i
       end
+    end
+  end
+  # 注文ステータスが「入金確認」になったら紐づく製作ステータス全てを「製作待ち」に自動更新
+  def order_status_is_deposited?(order)
+		if order.order_status_before_type_cast == 1
+			order.product_orders.each do |p|
+				p.update(product_order_status:1)
+      end
+      flash[:info] = "製作ステータスが「製作待ち」に更新されました"
+		end
+  end
+  # 製作ステータスが全部「製作完了」になったら注文ステータスが「発送準備中」に自動更新
+  def product_order_status_is_production_complete?(order)
+    if  order.product_orders.all? { |p|
+      p.product_order_status_before_type_cast == 3 }
+      order.update(order_status: 3)
+      flash[:success] = "注文ステータスが「発送準備中」に更新されました"
+    end
+  end
+  # 製作ステータスが一つでも「製作中」になったら注文ステータスが「製作中」に自動更新
+  def product_order_status_is_in_production?(product_order)
+    if product_order.product_order_status_before_type_cast == 2
+      product_order.order.update(order_status: 2)
+      flash[:success] = "注文ステータスが「製作中」に更新されました"
     end
   end
 end

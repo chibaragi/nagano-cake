@@ -13,19 +13,4 @@ class Order < ApplicationRecord
 		"発送準備中" => 3,  
 		"発送済み" => 4   
 	}
-	# 注文ステータスが「入金確認」になったら紐づく製作ステータス全てを「製作待ち」に自動更新
-	def order_status_is_deposited?
-		if self.order_status_before_type_cast == 1
-			self.product_orders.each do |p|
-				p.update(product_order_status:1)
-			end
-		end
-	end
-	# 製作ステータスが全部「製作完了」になったら注文ステータスを「発送準備中」に自動更新
-  def product_order_status_is_production_complete?
-    if  self.product_orders.all? { |p|
-      p.product_order_status_before_type_cast == 3 }
-			self.update(order_status: 3)
-    end
-  end
 end
