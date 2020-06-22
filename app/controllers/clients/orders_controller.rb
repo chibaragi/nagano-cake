@@ -119,7 +119,7 @@ class Clients::OrdersController < ApplicationController
     @sum = @subtotals.sum
   end
 
-  private
+  private  
   def order_params
     params.require(:order).permit(:payment, :receive_name, :postal_code,:street_address)
   end

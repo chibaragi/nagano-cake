@@ -41,10 +41,10 @@
 
 
 # ここから4行：InsideCart
-  # InsideCart.create!(:client_id => 1, :product_id => 1, :quantity => 1)
-  # InsideCart.create!(:client_id => 1, :product_id => 2, :quantity => 2)
-  # InsideCart.create!(:client_id => 1, :product_id => 3, :quantity => 1)
-  # InsideCart.create!(:client_id => 1, :product_id => 4, :quantity => 3)
+  #  InsideCart.create!(:client_id => 1, :product_id => 1, :quantity => 1)
+  #  InsideCart.create!(:client_id => 1, :product_id => 2, :quantity => 2)
+  #  InsideCart.create!(:client_id => 1, :product_id => 3, :quantity => 1)
+  #  InsideCart.create!(:client_id => 1, :product_id => 4, :quantity => 3)
 
 # ProductOrder.create!(:order_id => 1, :product_id => 1, :quantity => 2, :once_price => 1100,:product_order_status => 0)
 # ProductOrder.create!(:order_id => 1, :product_id => 2, :quantity => 1, :once_price => 500,:product_order_status => 1)

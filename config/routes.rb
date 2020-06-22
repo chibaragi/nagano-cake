@@ -26,9 +26,11 @@ Rails.application.routes.draw do
   end
 
   namespace :admins do
-    # ここから飯田が変更しました（resourcesより先に書かないとうまく表示されないため）
+    # ここから飯田が変更しました（resourcesより先に書かないとうまく表示されない／アクションproduct_orders_update追加／updateをorder_status_updateに変更）
     get "orders/top" => "orders#top"
-    resources :orders, only: [:show, :index, :update]
+    patch "orders/order_status" => "orders#order_status_update"
+    patch "orders/product_orders_status" => "orders#product_orders_status_update"
+    resources :orders, only: [:show, :index]
     # ここまで
   end
 
