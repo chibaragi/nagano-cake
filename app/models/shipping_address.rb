@@ -6,7 +6,7 @@ class ShippingAddress < ApplicationRecord
     validates :postal_code
     validates :street_address
   end
-  
+
   def full_address
     [postal_code, street_address, receive_name].join('')
   end

@@ -1,19 +1,18 @@
 Rails.application.routes.draw do
-
   devise_for :admins, :controllers => {
-     registrations: "admins/registrations",
-     sessions: "admins/sessions"
-   }
+    registrations: "admins/registrations",
+    sessions: "admins/sessions",
+  }
 
-  devise_for :clients, controllers:{
-     registrations: "clients/registrations",
-     sessions: "clients/sessions",
-     confirmations: "clients/confirmations",
-     mailer: "clients/mailer",
-     passwords: "clients/passwords",
-     shared: "clients/shared",
-     unlocks: "clients/unlocks"
-   }
+  devise_for :clients, controllers: {
+    registrations: "clients/registrations",
+    sessions: "clients/sessions",
+    confirmations: "clients/confirmations",
+    mailer: "clients/mailer",
+    passwords: "clients/passwords",
+    shared: "clients/shared",
+    unlocks: "clients/unlocks",
+  }
 
   root "clients/products#top"
 
@@ -65,4 +64,4 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :clients, only: [:show, :index]
   end
-end 
+end
