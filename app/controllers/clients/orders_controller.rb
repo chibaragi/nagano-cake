@@ -18,12 +18,16 @@ class Clients::OrdersController < ApplicationController
       redirect_to orders_confirm_order_path
     elsif params[:selected_address] == "radio2"
       session[:payment] = order_params[:payment]
-      # 選択されたshipping_addressを@selected_shipping_addresと定義
-      @selected_shipping_address=@client.shipping_addresses.find(params[:regestrated_address][:regestrated_address])
-      session[:postal_code] = @selected_shipping_address.postal_code
-      session[:street_address] = @selected_shipping_address.street_address
-      session[:receive_name] = @selected_shipping_address.receive_name
-      redirect_to orders_confirm_order_path
+      if params[:regestrated_address][:regestrated_address] ==  ""
+        flash[:danger] = "登録済み住所を選択してください"
+        redirect_back(fallback_location: root_path)
+      else
+        @selected_shipping_address=@client.shipping_addresses.find(params[:regestrated_address][:regestrated_address])
+        session[:postal_code] = @selected_shipping_address.postal_code
+        session[:street_address] = @selected_shipping_address.street_address
+        session[:receive_name] = @selected_shipping_address.receive_name
+        redirect_to orders_confirm_order_path
+      end
     elsif params[:selected_address] == "radio3"
       session[:payment] = order_params[:payment]
       session[:postal_code] = order_params[:postal_code]
@@ -35,11 +39,15 @@ class Clients::OrdersController < ApplicationController
       @shipping_address.postal_code=order_params[:postal_code]
       @shipping_address.street_address=order_params[:street_address]
       @shipping_address.receive_name=order_params[:receive_name]
-      @shipping_address.save
-      # （todo)バリデーションかフラッシュメッセージ書く／正規表現
+      if @shipping_address.save
+      flash[:success] = "新しいお届け先が保存されました"
       redirect_to orders_confirm_order_path
+      else
+      flash[:danger] = "新しいお届け先の情報を正しく入力してください"
+      render :new
+      end
     else #どのラジオボタンも選択されていないときは同じページに返す
-      # （todo)バリデーションかフラッシュメッセージ書く
+      flash[:danger] = "必要情報を入力してください"
       redirect_back(fallback_location: root_path)
     end
   end
@@ -56,17 +64,10 @@ class Clients::OrdersController < ApplicationController
     @sum  = 0
     @subtotals = @inside_carts.map {|inside_cart|  Product.find(inside_cart.product_id).price * inside_cart.quantity } 
     @sum = @subtotals.sum
-    # 上記は下記と同じ意味合い
-    # @sum  = 0
-    # @inside_carts.each do |inside_cart|
-    #   @subtotal =  Product.find(inside_cart.product_id).price * inside_cart.quantity 
-    #   @sum += @subtotal
-    # end 
     session[:sum] =  @sum
   end
   
   def create
-    # （todo1)paymentとorder_statusがまんま文字が入っちゃうのなおす
     @order=Order.new(
       payment: session[:payment].to_i, 
       receive_name: session[:receive_name],
@@ -77,7 +78,8 @@ class Clients::OrdersController < ApplicationController
       client_id:current_client.id
       ) 
       @order.total_price = session[:sum] + @order.postage
-       if @order.save
+    if @order.client.inside_carts.count >= 1
+      @order.save
       # 注文商品テーブルに代入  
       @order.client.inside_carts.each do |i|
         @product_order = @order.product_orders.build  
@@ -96,11 +98,11 @@ class Clients::OrdersController < ApplicationController
        session[:postal_code].clear
        session[:street_address].clear
        session.delete(:sum)
-    redirect_to orders_after_order_path
-     else
-    # （todo)フラッシュメッセージ書く
+       redirect_to orders_after_order_path
+    else
+    flash[:danger] = "注文確定に失敗しました.   カートが空でないか確認してください"
        redirect_back(fallback_location: root_path)
-     end
+    end
   end
 
   def after_order

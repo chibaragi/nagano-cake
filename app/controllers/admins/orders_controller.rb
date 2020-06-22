@@ -1,7 +1,8 @@
 class Admins::OrdersController < ApplicationController
   def top
-    # （todo)反映されない＋時間ずれる
-    @today_orders=Order.where(created_at: Date.today)
+    from = Time.current.beginning_of_day
+    to = Time.current.end_of_day
+    @today_orders=Order.where(created_at: from..to)
   end
 
   def index
@@ -20,12 +21,12 @@ class Admins::OrdersController < ApplicationController
   def order_status_update
     @order = Order.find(params[:order][:id])
     if @order.update(params_int(order_params))
-      # (todo)flash[:book_update] = ""
+      flash[:success] = "注文ステータスを更新しました"
       # 注文ステータスが「入金確認」になったら紐づく製作ステータス全てを「製作待ち」に自動更新(モデルに定義)
       @order.order_status_is_deposited?
       redirect_back(fallback_location: root_path)
     else
-      #  (todo)flash[:book_update] = ""
+      flash[:danger] = "注文ステータスの更新に失敗しました"
       redirect_back(fallback_location: root_path)
     end
   end
@@ -33,7 +34,7 @@ class Admins::OrdersController < ApplicationController
   def product_orders_status_update
     @product_order = ProductOrder.find(params[:product_order][:id])
     if @product_order.update(params_int(product_order_params))
-      # (todo)flash[:book_update] = ""
+      flash[:success] = "製作ステータスを更新しました"
       # 製作ステータスが一つでも「製作中」になったら注文ステータスが「製作中」に自動更新（モデルに定義）
       @product_order.product_order_status_is_in_production?
       # 製作ステータスが全部「製作完了」になったら注文ステータスが「発送準備中」に自動更新（モデルに定義）
@@ -41,7 +42,7 @@ class Admins::OrdersController < ApplicationController
       @order.product_order_status_is_production_complete?
       redirect_back(fallback_location: root_path)
     else
-      #  (todo)flash[:book_update] = ""
+      flash[:danger] = "製作ステータスの更新に失敗しました"
       redirect_back(fallback_location: root_path)
     end
   end
@@ -62,7 +63,7 @@ class Admins::OrdersController < ApplicationController
   rescue ArgumentError
     false
   end
-  
+
   def params_int(order_params)
     order_params.each do |key,value|
       if integer_string?(value)

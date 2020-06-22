@@ -20,7 +20,6 @@
                 <%= link_to client_path(current_client),class:"nav-item" do %><i class="glyphicon glyphicon-home home"></i>&emsp;マイページ<% end %>
               </li>
               <li>
-
                 <%= link_to products_path,class:"nav-item" do %><i class="glyphicon glyphicon-user users"></i>&emsp;商品一覧<% end %>
               </li>
               <li>
@@ -65,10 +64,14 @@
     </header>
     <main>
       <div class="container main-container">
+      <%# 下記飯田が変更、そしてパーシャルのフラッシュメッセージとエラーメッセージファイル削除してください %>
         <%# フラッシュメッセージ %>
-        <div class="container flash"> 
-          <%= render 'layouts/flash_messages' %>
-        </div> 
+          <% flash.each do |message_type, message| %>
+            <div class="alert alert-<%= message_type %>">
+              <%= message %>
+            </div>
+          <% end %>  
+          <%# ここまで %>
         <%# 各ページ本体 %>
         <%= yield %>
       </div>
