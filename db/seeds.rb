@@ -23,27 +23,27 @@
    # client1.shipping_addresses.build(:receive_name => "佐々木希", :postal_code =>"4444444", :street_address => "東京都渋谷区道玄坂4-4-4")
    # client1.save
 
-# ここからclient1.orders(４つ)
-   # client1.orders.build(:receive_name => "田中太郎", :postal_code =>"1111111", :street_address => "東京都豊島区西池袋1-1-1",:postage =>800, :payment => 1, :total_price => 3500, :order_status => 1)
+# ここからclient1.orders(1つ)
+   # client1.orders.build(:receive_name => "田中太郎", :postal_code =>"1111111", :street_address => "東京都豊島区西池袋1-1-1",:postage =>800, :payment => 1, :total_price => 4155, :order_status => 1)
    #  client1.save
 
 # ここからProduct(4つ)
-   # Product.create!(:genre_id => 1, :name => 'いちごのショートケーキ', :price => 1100, :explanation => "定番の甘くて美味しいイチゴのショートケーキです。", :image_id => "", :is_enabled => true)
+   # Product.create!(:genre_id => 1, :name => 'いちごのショートケーキ', :price => 1000, :explanation => "定番の甘くて美味しいイチゴのショートケーキです。", :image_id => "", :is_enabled => true)
    # Product.create!(:genre_id => 2, :name => 'かぼちゃのプリン', :price => 500, :explanation => "濃厚なかぼちゃのプリンです。", :image_id => "", :is_enabled => true)
-   # Product.create!(:genre_id => 3, :name => 'マドレーヌ', :price => 330, :explanation => "3時のおやつにマドレーヌをどうぞ。", :image_id => "", :is_enabled => true)
+   # Product.create!(:genre_id => 3, :name => 'マドレーヌ', :price => 300, :explanation => "3時のおやつにマドレーヌをどうぞ。", :image_id => "", :is_enabled => true)
    # Product.create!(:genre_id => 4, :name => 'ブドウキャンディ', :price => 250, :explanation => "ブドウキャンディの詰め合わせです。", :image_id => "", :is_enabled => true)
 
 # ここからInsideCart(4つ)
-   # InsideCart.create!(:client_id => 1, :product_id => 1, :quantity => 1)
-   # InsideCart.create!(:client_id => 1, :product_id => 2, :quantity => 2)
-   # InsideCart.create!(:client_id => 1, :product_id => 3, :quantity => 1)
-   # InsideCart.create!(:client_id => 1, :product_id => 4, :quantity => 3)
+   InsideCart.create!(:client_id => 1, :product_id => 1, :quantity => 1)
+   InsideCart.create!(:client_id => 1, :product_id => 2, :quantity => 2)
+   InsideCart.create!(:client_id => 1, :product_id => 3, :quantity => 1)
+   InsideCart.create!(:client_id => 1, :product_id => 4, :quantity => 3)
 
 # ここからProductOrder(６つ、order２回分)
    # ProductOrder.create!(:order_id => 1, :product_id => 1, :quantity => 2, :once_price => 1100,:product_order_status => 0)
-   # ProductOrder.create!(:order_id => 1, :product_id => 2, :quantity => 1, :once_price => 500,:product_order_status => 1)
+   # ProductOrder.create!(:order_id => 1, :product_id => 2, :quantity => 1, :once_price => 550,:product_order_status => 1)
 
    # ProductOrder.create!(:order_id => 4, :product_id => 1, :quantity => 1, :once_price => 1100 ,:product_order_status => 1)
-   # ProductOrder.create!(:order_id => 4, :product_id => 2, :quantity => 2, :once_price => 500 ,:product_order_status => 2)
+   # ProductOrder.create!(:order_id => 4, :product_id => 2, :quantity => 2, :once_price => 550 ,:product_order_status => 2)
    # ProductOrder.create!(:order_id => 4, :product_id => 3, :quantity => 1, :once_price => 330,:product_order_status => 3)
-   # ProductOrder.create!(:order_id => 4, :product_id => 4, :quantity => 3, :once_price => 250,:product_order_status => 4)
+   # ProductOrder.create!(:order_id => 4, :product_id => 4, :quantity => 3, :once_price => 275,:product_order_status => 4)

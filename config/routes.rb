@@ -14,7 +14,15 @@ Rails.application.routes.draw do
     unlocks: "clients/unlocks",
   }
 
-  root "clients/products#top"
+  # 飯田が追記（adminのルートパス）
+  # root "clients/products#top"←これも消す
+  scope module: :clients do
+    root 'products#top'
+  end
+  namespace :admins do
+    root 'orders#top'
+  end
+  # ここまで
 
   namespace :admins do
     resources :products, only: [:new, :show, :create, :edit, :index, :update]
@@ -63,5 +71,11 @@ Rails.application.routes.draw do
   end
   namespace :admins do
     resources :clients, only: [:show, :index]
+  end
+
+  # 下記追加（飯田）
+  # 検索機能
+  namespace :admins do
+    get 'search' => 'searches#search'
   end
 end

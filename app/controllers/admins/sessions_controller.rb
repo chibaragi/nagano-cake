@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class Admins::SessionsController < Devise::SessionsController
+  # 下記追加（飯田）
+  def after_sign_out_path_for(resource) 
+    new_admin_session_path
+  end 
+  # ここまで
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

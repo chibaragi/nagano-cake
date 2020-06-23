@@ -62,7 +62,7 @@ class Clients::OrdersController < ApplicationController
       postage: 800
     )
     @sum = 0
-    @subtotals = @inside_carts.map { |inside_cart| Product.find(inside_cart.product_id).price * inside_cart.quantity }
+    @subtotals = @inside_carts.map { |inside_cart| (Product.find(inside_cart.product_id).price * 1.1 * inside_cart.quantity).to_i }
     @sum = @subtotals.sum
     session[:sum] = @sum
   end
@@ -86,8 +86,8 @@ class Clients::OrdersController < ApplicationController
         @product_order.order_id = @order.id
         @product_order.product_order_status = 0
         @product_order.product_id = i.product_id
-        @product_order.quantity = i.quantity
-        @product_order.once_price = i.product.price
+        @product_order.quantity = (i.quantity * 1.1).to_i
+        @product_order.once_price = (i.product.price * 1.1).to_i
         @product_order.save
       end
       # カートを空に

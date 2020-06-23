@@ -31,24 +31,101 @@
    clear: both;
  }
  .main-container {
-   margin-top: 50px;
+   margin-top: 100px;
    padding-top: 30px;
    /* background-color: aqua; */
  }
+
+//  ここから下全部書き直しました（飯田）
  /* ヘッダー */
+//  .shop_logo{
+//   width:100px;
+//   height:100px;
+//  }
  header{
+   
    background-color: #95D8C1;
+
  }
  .header-logo{
    font-weight: bold;
+   font-size:20px;
  }
  .nav-item{
    color:#666;
+   font-size:15px;
+   height:70px;
+  //  background-color: #95D8C1;
+ }
+ .client-name{
+  display:inline-block;
+  // height:70px;
+  padding-top:15px;
+  padding-left:10%;
  }
  @media (max-width: 767px) {
+  .main-container {
+    margin-top: 275px;
+  }
    .header-logo{
      display:block;
      width: 100%;
    }
+   .client-name{
+   padding-left:0;
+  }
  }
+
+
+// ***********
+
+// .header-logo{
+//   font-weight: bold;
+//   font-size:20px;
+//   height:70px;
+// }
+.admin-header{
+// background-color: lightgreen;
+// margin-bottom:30px;
+}
+
+
+// .admin-nav-item{
+//   color:#666;
+//   font-size:15px;
+//   // background-color: #95D8C1;
+//   // height:100px;
+// }
+// .admin-nav-bars{
+//   // background-color: blue;
+//   height:50px
+// }
+
+
+// //  検索窓
+// .search-window{
+//   // display:inline-block;
+//   // background-color: #fff;
+//   height:30px;
+//   width:50%;
+//   margin-left:auto;
+//   margin-bottom:20px;
+// }
+
+
+// @media (max-width: 767px) {
+//   header{
+//    height: 275px;
+//   }
+//   .header-logo{
+//     display:block;
+//     height:60px;
+//   }
+//   .admin-nav-item{
+//     // color:#666;
+//     // font-size:15px;
+//     height:60px;
+//   }
+
+// }
 

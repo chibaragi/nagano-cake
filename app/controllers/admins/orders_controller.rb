@@ -1,4 +1,5 @@
 class Admins::OrdersController < ApplicationController
+  before_action :authenticate_admin!
   def top
     from = Time.current.beginning_of_day
     to = Time.current.end_of_day
@@ -45,7 +46,6 @@ class Admins::OrdersController < ApplicationController
   end
 
   private
-
   def order_params
     params.require(:order).permit(:order_status)
   end

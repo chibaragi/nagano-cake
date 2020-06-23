@@ -4,7 +4,8 @@ class Clients::ProductsController < ApplicationController
   end
 
   def show
-    product = Product.find(params[:id])
+    @product = Product.find(params[:id])
+    @inside_cart=InsideCart.new
   end
 
   def top
