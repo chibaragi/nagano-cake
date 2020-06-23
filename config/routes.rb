@@ -59,6 +59,6 @@ Rails.application.routes.draw do
     resources :inside_carts, only: [:update]
   end
   namespace :admins do
-    resources :clients, only: [:show, :index]
+    resources :clients, only: [:show, :index, :edit, :update, :destroy]
   end
 end 
