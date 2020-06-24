@@ -14,49 +14,65 @@ Rails.application.routes.draw do
     unlocks: "clients/unlocks",
   }
 
-  root "clients/products#top"
+  scope module: :clients do
+    root 'products#top'
+  end
+  namespace :admins do
+    root 'orders#top'
+  end
+  # ここまで
 
   namespace :admins do
-    resources :products, only: [:new, :show, :create, :edit, :index, :update]
+    resources :products, only: %i[new show create edit index update]
   end
 
   scope module: :clients do
-    resources :products, only: [:show, :index]
-    get "genres/:id/genre_products" => "products#genre_products"
+    resources :products, only: %i[show index]
+    get 'genres/:id/genre_products' => 'products#genre_products'
   end
 
   namespace :admins do
-    resources :orders, only: [:show, :index, :update]
     get "orders/top" => "orders#top"
+    patch "orders/order_status" => "orders#order_status_update"
+    patch "orders/product_orders_status" => "orders#product_orders_status_update"
+    resources :orders, only: [:show, :index]
   end
 
   scope module: :clients do
+    post "orders/pre_create" => "orders#pre_create"
+    get "orders/confirm_order" => "orders#confirm_order"
+    get "orders/after_order" => "orders#after_order"
     resources :orders, only: [:new, :show, :create, :index]
-    get "orders/pre_create"
-    get "orders/confirm_order"
-    get "orders/after_order"
   end
+  
   scope module: :clients do
-    resources :clients, only: [:show, :edit]
     get "clients/withdrawal" => "clients#withdrawal"
     patch "clients/withdrawal" => "clients#withdrawal"
+    resources :clients, only: [:show, :edit, :update, :destroy]
   end
+  
   scope module: :clients do
-    resources :inside_carts, only: [:create, :index, :update, :destroy]
-    delete "inside_carts" => "inside_carts#destroy_all"
+    resources :inside_carts, only: %i[create index update destroy]
+    delete 'inside_carts' => 'inside_carts#destroy_all'
   end
 
   scope module: :clients do
-    resources :shipping_addresses, only: [:new, :create, :edit, :update, :destroy]
+    resources :shipping_addresses, only: %i[new create edit update destroy]
   end
 
   namespace :admins do
-    resources :genres, only: [:create, :index, :update, :edit]
+    resources :genres, only: %i[create index update edit]
   end
   namespace :admins do
     resources :inside_carts, only: [:update]
   end
+  
   namespace :admins do
-    resources :clients, only: [:show, :index]
+    resources :clients, only: [:show, :index, :edit, :update, :destroy]
+  end
+
+
+  namespace :admins do
+    get 'search' => 'searches#search'
   end
 end

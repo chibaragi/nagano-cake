@@ -1,27 +1,17 @@
-<h1>Clients::ShippingAddresses#edit</h1>
-<p>Find me in app/views/clients/shipping_addresses/edit.html.erb</p>
-
+<div class="row">
 <h2>配送先編集</h2>
 
-<form>
-	<dl>
-		<div class="form-item">
-			<dt>郵便番号(ハイフンなし)</dt>
-			<dd><input type="text" name="postal code"></dd>
-		</div>
+<%= form_for(@shipping_address) do |f| %>
+	<p>郵便番号(ハイフンなし)</p>
+	<%= f.text_field :postal_code %>
+	<p>住所</p>
+	<%= f.text_area :street_address %>
+	<p>宛名</p>
+	<%= f.text_area :receive_name %>
 
-		<div class="form-item">
-			<dt>住所</dt>
-			<dd><input type="text" name="adress"></dd>
-		</div>
+	<%= f.submit "編集する", class: "btn btn-primary" %>
+<% end %>
+</div>
 
-		<div class="form-item">
-			<dt>宛名</dt>
-			<dd><input type="text" name="receive_name"></dd>
-		</div>
-	</dl>
-	<div class="form-edit">
-		<input type="submit" value="編集する"
-	</div>
-</form>
+
 

@@ -31,25 +31,74 @@
    clear: both;
  }
  .main-container {
-   margin-top: 50px;
+   margin-top: 100px;
    padding-top: 30px;
-   /* background-color: aqua; */
  }
+
  /* ヘッダー */
  header{
    background-color: #95D8C1;
  }
  .header-logo{
    font-weight: bold;
+   font-size:40px;
+   padding-top: 30px;
  }
- .nav-item{
+ .nav-item,.admin-nav-item{
    color:#666;
+   font-size:15px;
+   height:70px;
+ }
+ .navbar-nav li a{
+  line-height: 40px;
+ }
+ .client-name{
+  display:inline-block;
+  font-size: 20px;
+  padding-top:20px;
+  padding-left:30%;
+  width:350px;
  }
  @media (max-width: 767px) {
+  .main-container {
+    margin-top: 250px;
+  }
+  .nav-item{
+     height:40px;
+   }
    .header-logo{
      display:block;
      width: 100%;
    }
-
-
+   .client-name{
+   padding-left:30px;
+  }
+  .adjust{
+    display:inline-block;
+  }
+ }
+//  管理者
+.admin-header{
+height:100px;
+}
+.search-window{
+  height:30px;
+  width:50%;
+  margin-left:auto;
+  margin-bottom:20px;
+}
+@media (max-width: 767px) {
+  .admin-header{
+   height: 300px;
+  }
+  .main-container {
+    margin-top: 300px;
+  }
+  .admin-nav-item{
+     font-size:15px;
+     height:40px;
+   }
+   .search-window{
+    width:100%;
+  }
  }

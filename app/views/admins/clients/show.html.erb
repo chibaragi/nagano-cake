@@ -1,2 +1,57 @@
-<h1>Admins::Clients#show</h1>
-<p>Find me in app/views/admins/clients/show.html.erb</p>
+<div class=“row”> 
+  <div class = "body" style>
+  	<div class = "container">
+  		<br><br>
+        <h2><%= @client.first_name %><%= @client.last_name %>さんの会員情報</h2>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">会員ID</th>
+                <td style>
+                  <%= @client.id %>&ensp;
+                  <% if @client.deleted_at == nil %>
+                    <a>有効会員</a>
+                  <% else %>
+                    <a>無効会員</a>
+                  <% end %>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="col">氏名</th>
+                <td style><%= @client.first_name %>&ensp;<%= @client.last_name %></td>
+              </tr>
+
+              <tr>
+                <th scope="col">カナ</th>
+                <td style><%= @client.first_name_kana %>&ensp;<%= @client.last_name_kana %></td>
+              </tr>
+
+              <tr>
+                <th scope="col">郵便番号</th>
+                <td style><%= @client.postal_code %></td>
+              </tr>
+
+              <tr>
+                 <th scope="col">住所</th>
+                <td style><%= @client.street_address %></td>
+              </tr>
+
+              <tr>
+                <th scope="col">電話番号</th>
+                <td style><%= @client.phone_number %></td>
+              </tr>
+
+              <tr>
+                <th scope="col">メールアドレス</th>
+                <td style><%= @client.email %></td>
+              </tr>
+          </thead>
+  	</table>
+
+  	 <%= link_to "編集する", edit_admins_client_path, class: "btn btn-primary" %>
+  	 <%= link_to "注文履歴一覧を見る", admins_orders_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
