@@ -2,7 +2,6 @@
 
 class Clients::OrdersController < ApplicationController
   before_action :authenticate_client!
-
   def new
     @order = Order.new
     @orders = current_client.orders.all
@@ -125,10 +124,8 @@ class Clients::OrdersController < ApplicationController
     @sum = @subtotals.sum
   end
 
-
   private
   def order_params
     params.require(:order).permit(:payment, :receive_name, :postal_code, :street_address)
   end
-
 end

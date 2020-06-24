@@ -1,16 +1,22 @@
 <div class="row">
-  <div class="col-xs-9">
-    <div class="product-image">
-      <%#= attachment_image_tag(product, :image, :fill, 200, 300, fallback: “no-image.jpg”) %>
-    </div>
-    <div class="detail">
-      <h2><%= @product.name %></h2>
-      <p><%= @product.explanation %></p>
-      <h3><%= @product.price %><span>（税込）</span></h3>
-    </div>
+	<div class="col-xs-3">
+	</div>
+	<div class="col-xs-4">
+		<div class="product-image">
+			<%= attachment_image_tag(@product, :image, :fill, 250, 200, fallback: "no-image.jpg") %>
+		</div>
+	</div>
+	<div class="col-xs-5">
+		<div class="detail">
+			<h2><%= @product.name %></h2>
+			<p><%= @product.explanation %></p>
+			<h3><%= (@product.price * 1.1).to_i %><span>（税込）</span></h3>
+		</div>
+		<div>
+
     <%= form_with(model: @inside_cart, url: inside_carts_path, method: :post, local: true) do |f| %>
       <%= f.label :quantity, "個数選択" %>
-      <%= f.select :quantity, [1,2,3,4,5] %>
+     　<%= f.number_field :quantity, min: 1, max: 100 %>
       <%= f.hidden_field :id, :value => @product.id %>
       <%= f.submit "カートに入れる" %>
     <% end %>

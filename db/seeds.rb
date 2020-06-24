@@ -8,6 +8,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+
 # ここからclient(２つ)
    # Client.create!(:email => 'chibaragi@yahoo.co.jp', :password => 'aaaaaa', :first_name => "千葉", :last_name => "らぎ", :first_name_kana => "チバ", :last_name_kana => "ラギ", :phone_number => "12345678910", :postal_code => "1234567", :street_address => "千葉県銚子市長野町123-456" )
 
