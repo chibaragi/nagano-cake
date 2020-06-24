@@ -1,12 +1,21 @@
 <div class=“row”> 
 	<div class = "body" style>
 		<div class = "container">
-			<h2>登録情報編集</h2>
+			<h2><%= @client.first_name %><%= @client.last_name %>さんの会員情報編集</h2>
 
-				<%= form_for (@client) do |f| %>
+				<%= form_for [:admins,@client] do |f| %>
+				<div class="field">
+	              <%= f.label :会員ID %><br>
+	                <%= @client.id %>&ensp;
+	                <% if @client.deleted_at == nil %>
+	                  <a>有効会員</a>
+	                <% else %>
+	                  <a>無効会員</a>
+	                <% end %>
+	              </div>
 
 				<div class="field">
-				    <%= f.label :名前 %><br />
+				    <%= f.label :名前 %><br>
 				    <%= f.label :（姓） %>
 				    <%= f.text_field :first_name, autofocus: true, autocomplete: "email" %>
 				    <%= f.label :（名） %>
@@ -22,12 +31,6 @@
 				 </div>
 
 				 <div class="field">
-				    <%= f.label :メールアドレス %><br />
-				    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-				 </div>
-
-
-				 <div class="field">
 				    <%= f.label :郵便番号（ハイフンなし） %><br />
 				    <%= f.text_field :postal_code, autofocus: true, autocomplete: "email" %>
 				 </div>
@@ -41,11 +44,27 @@
 				    <%= f.label :電話番号（ハイフンなし） %><br />
 				    <%= f.text_field :phone_number, autofocus: true, autocomplete: "email" %>
 
+				 <div class="field">
+				    <%= f.label :メールアドレス %><br />
+				    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+				 </div>
+
+				 <div class="field">
+				 	<!-- デフォルトで顧客の現在ステータスに合わせてラジオボタンの初期値を設定するためのif文 -->
+				    <%= f.label :会員ステータス %><br>
+				     <% if @client.deleted_at == nil %>
+				    	<label><%= f.radio_button :deleted_at,  {value: ""}, {checked: true} %>有効</label>
+				 		<label><%= f.radio_button :deleted_at, value: Time.now %>退会済み</label>
+				 	<% else %>
+				 		<label><%= f.radio_button :deleted_at,  value: "" %>有効</label>
+				 		<label><%= f.radio_button :deleted_at, {value: Time.now}, {checked: true} %>退会済み</label>
+				 	<% end %>
+				 </div>
+
 				    <%= f.submit "編集内容を保存する", class: "btn btn-primary"%>
 
 				 </div>
 			<% end %>
-			<%= link_to "退会する", clients_withdrawal_path, class: "btn btn-primary"%>
 		</div>
 	</div>
 </div>

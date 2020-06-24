@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   end
   # ここまで
 
+
   namespace :admins do
     resources :products, only: [:new, :show, :create, :edit, :index, :update]
   end
@@ -49,11 +50,13 @@ Rails.application.routes.draw do
     # ここまで
     resources :orders, only: [:new, :show, :create, :index]
   end
+  # ページ推移の関係で順番を入れ替えてます。あとupdateを追加してます。byけんちゃん　－－ここからーー
   scope module: :clients do
-    resources :clients, only: [:show, :edit]
     get "clients/withdrawal" => "clients#withdrawal"
     patch "clients/withdrawal" => "clients#withdrawal"
+    resources :clients, only: [:show, :edit, :update, :destroy]
   end
+  # ーーここまでーー
   scope module: :clients do
     resources :inside_carts, only: [:create, :index, :update, :destroy]
     delete "inside_carts" => "inside_carts#destroy_all"
@@ -69,8 +72,9 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :inside_carts, only: [:update]
   end
+  #ページの動作の関係でルーティングを増やしてます。byけんちゃん
   namespace :admins do
-    resources :clients, only: [:show, :index]
+    resources :clients, only: [:show, :index, :edit, :update, :destroy]
   end
 
   # 下記追加（飯田）
@@ -78,4 +82,5 @@ Rails.application.routes.draw do
   namespace :admins do
     get 'search' => 'searches#search'
   end
+
 end

@@ -15,7 +15,9 @@
           <span><%#= image_tag('nagano_cafe_logo.PNG', class: 'shop_logo') %>NaganoCake</span>
         </nav>
             <% if client_signed_in? %>
+
                <%= render 'layouts/header_client' %>
+
             <% elsif admin_signed_in? %>
               <%= render 'layouts/header_admin' %>
             <% else %>
@@ -30,11 +32,11 @@
             <%= message %>
           </div>
         <% end %>  
+
         <%# 各ページ本体 %>
         <%= yield %>
       </div>
     </main>
-
     <footer>
       <div class="container">
         <div class="row">
@@ -45,4 +47,3 @@
       </div>
     </footer> 
   </body>
-</html>

@@ -15,6 +15,7 @@ class Clients::OrdersController < ApplicationController
       session[:postal_code] = @client.postal_code
       session[:street_address] = @client.street_address
       session[:receive_name] = @client.first_name + @client.last_name
+
       redirect_to orders_confirm_order_path
     elsif params[:selected_address] == "radio2"
       session[:payment] = order_params[:payment]
@@ -121,9 +122,10 @@ class Clients::OrdersController < ApplicationController
     @sum = @subtotals.sum
   end
 
-  private
 
+  private
   def order_params
     params.require(:order).permit(:payment, :receive_name, :postal_code, :street_address)
   end
+
 end
