@@ -1,6 +1,11 @@
+<div class="row">
+<div class="col-xs-3">
 <p>ジャンル検索</p>
 <ul>
+	
 	<% @genres.each do |genre| %>
-		<li>genre.name</li>
+		<li><%= link_to genre.name, products_path(genre_id: genre.id) %></li>
 	<% end %>
 </ul>
+</div>
+</div>

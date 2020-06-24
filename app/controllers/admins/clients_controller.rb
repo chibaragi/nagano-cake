@@ -1,7 +1,7 @@
-class Admins::ClientsController < ApplicationController
-  def show
-  end
+# frozen_string_literal: true
 
-  def index
-  end
+class Admins::ClientsController < ApplicationController
+  def show; end
+
+  def index; end
 end

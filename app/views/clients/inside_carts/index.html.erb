@@ -1,2 +1,88 @@
-<h1>Clients::InsideCarts#index</h1>
-<p>Find me in app/views/clients/inside_carts/index.html.erb</p>
+
+	<div class="row">
+		<div class="col-xs-8" style="margin-top: 50px;">
+			<h4>ショッピングカート</h4>
+
+			<%= button_to 'カートを空にする', @inside_cart, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: "btn btn-danger" %>
+
+			<table>
+				<thead class="thead-light">
+					<tr>
+						<th>商品名</th>
+						<th>単価(税込)</th>
+						<th>数量</th>
+						<th>小計</th>
+						<th>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @inside_carts.each do |inside_cart| %>
+					<tr>
+						<td><%= inside_cart.product.name %></td>
+						<td><%= (inside_cart.product.price * 1.1).to_i %></td>
+						<td>
+							<%= form_with model: inside_cart, url: inside_cart_path(id: inside_cart.id), method: :patch, local: true do |f| %>
+								<%= f.number_field :quantity, min: 1, max: 100 %>
+								<%#= f.hidden_field :id, :value => inside_cart.id %>
+								<%= f.submit "変更" %>
+							<% end %>
+						</td>
+						<!-- <td><%= inside_cart.quantity %></td> -->
+						<td><%= (Product.find(inside_cart.product_id).price * 1.1 * inside_cart.quantity).to_i  %></td>
+						<td><%= link_to "削除する", inside_cart_path(id: inside_cart.id), method: :delete, class: "btn btn-danger"  %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+			<table>
+				<tr>
+					<th>合計金額</th>
+					<td><%= @sum %></td>
+				</tr>
+			</table>
+
+			<%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %>
+			 <div>
+        		<% if @inside_carts.count == 0  %>
+        			<%= link_to "情報入力に進む", inside_carts_path, class: "btn btn-success" %>
+        			<%= flash[:danger] = "カートが空です" %>
+        		<% else %>
+        			<%= link_to "情報入力に進む", new_order_path, class: "btn btn-success" %>
+        		<% end %>
+    		</div>
+		</div>
+	</div>
+
+
+
+<!-- <div class="container">
+<div class="row">
+      <h2>注文情報確認</h2>
+      <div class="col-xs-8" style="margin-top: 50px;">
+        <table class=“table table-bordered”>
+          <thead>
+            <tr class=“table-head” style=“background-color:#F5F5F5;“>
+              <th scope=“col”>商品名</th>
+              <th scope=“col”>単価（税込）</th>
+              <th scope=“col”>数量</th>
+              <th scope=“col”>小計</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%# @inside_carts.each do |inside_cart| %>
+              <tr>
+                <td><%#= inside_cart.product.name %></td>
+                <td><%#= inside_cart.product.price %></td>
+                <td><%#= inside_cart.quantity %></td>
+                <td><%#= Product.find(inside_cart.product_id).price * inside_cart.quantity  %>
+                </td>
+              </tr>
+            <%# end %>
+          </tbody>
+        </table>
+ -->
+       
+
+      <!-- </div>
+    </div>
+</div> -->

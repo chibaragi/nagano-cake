@@ -63,12 +63,13 @@
       </div>
     </header>
 
-    <main>
-      <div class="container main-container">
+    <div class="container main-container">
         <%# フラッシュメッセージ %>
-        <div class="container flash"> 
-          <%= render 'layouts/flash_messages' %>
-        </div> 
+          <% flash.each do |message_type, message| %>
+            <div class="alert alert-<%= message_type %>">
+              <%= message %>
+            </div>
+          <% end %>
         <%# 各ページ本体 %>
         <%= yield %>
       </div>
