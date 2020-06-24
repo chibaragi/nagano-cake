@@ -1,5 +1,5 @@
 class Admins::ProductsController < ApplicationController
-  before_action :authenticate_client!, only: [:show, :index]
+  before_action :authenticate_admin!, only: [:show, :index]
   def index
   end
 

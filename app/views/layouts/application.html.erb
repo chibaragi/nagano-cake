@@ -1,3 +1,4 @@
+<%# 全て変更しました (飯田）%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -11,69 +12,27 @@
     <header class="navbar navbar-fixed-top">
       <div class="container">
         <nav class="nav navbar-brand navbar-left header-logo">
-          <span>Nagano-cake</span>
+          <span><%#= image_tag('nagano_cafe_logo.PNG', class: 'shop_logo') %>NaganoCake</span>
         </nav>
-        <nav>
-          <ul class="nav navbar-nav navbar-right">
             <% if client_signed_in? %>
-              <nav class="nav navbar-brand navbar-left header-logo">
-                <span>ようこそ、<%= current_client.first_name %><%= current_client.last_name %>さん！</span>
-              </nav>
-              <li class="">
-                <%= link_to client_path(current_client),class:"nav-item" do %><i class="glyphicon glyphicon-home home"></i>&emsp;マイページ<% end %>
-              </li>
-              <li>
 
-                <%= link_to products_path,class:"nav-item" do %><i class="glyphicon glyphicon-user users"></i>&emsp;商品一覧<% end %>
-              </li>
-              <li>
-                <%= link_to inside_carts_path,class:"nav-item" do %><i class="glyphicon glyphicon-book books"></i>&emsp;カート<% end %>
-              </li>
-              <li>
-                <%= link_to destroy_client_session_path,class:"nav-item", method: :delete do %><i class="glyphicon glyphicon-log-out logout"></i>&emsp;ログアウト<% end %>
-              </li>
+               <%= render 'layouts/header_client' %>
+
             <% elsif admin_signed_in? %>
-                <li>管理者</li>
-                <li>
-                  <%= link_to admins_products_path,class:"nav-item" do %><i class="glyphicon glyphicon-user users"></i>&emsp;商品一覧<% end %>
-                </li>
-                <li class="">
-                  <%#= link_to admins_clients_path,class:"nav-item" do %><i class="glyphicon glyphicon-home home"></i>&emsp;会員一覧（検討要）<%# end %>
-                </li>
-                <li>
-                  <%= link_to admins_orders_path,class:"nav-item" do %><i class="glyphicon glyphicon-book books"></i>&emsp;注文履歴一覧<% end %>
-                </li>
-                <li class="">
-                  <%= link_to admins_genres_path,class:"nav-item" do %><i class="glyphicon glyphicon-home home"></i>&emsp;ジャンル一覧<% end %>
-                </li>
-                <li>
-                  <%= link_to destroy_admin_session_path,class:"nav-item", method: :delete do %><i class="glyphicon glyphicon-log-out logout"></i>&emsp;ログアウト<% end %>
-                </li>
-              <% else %>
-                  <li>
-
-                <%= link_to products_path ,class:"nav-item" do %><i class="glyphicon glyphicon-cutlery"></i>&emsp;商品一覧<% end %>
-                </li>
-                <li>
-                  <%= link_to new_client_registration_path ,class:"nav-item" do %><i class="glyphicon glyphicon-edit"></i>&emsp;新規登録<% end %>
-                </li>
-                <li>
-                  <%= link_to new_client_session_path ,class:"nav-item" do %><i class="glyphicon glyphicon-log-in"></i>&emsp;ログイン<% end %>
-                </li>
-              <% end %>
-            </ul>
-        </nav>
+              <%= render 'layouts/header_admin' %>
+            <% else %>
+              <%= render 'layouts/header_logout' %>
+            <% end %>
       </div>
     </header>
-
     <main>
-       <div class=“container main-container”>
-        <%# フラッシュメッセージ %>
-          <% flash.each do |message_type, message| %>
-            <div class=“alert alert-<%= message_type %>“>
-              <%= message %>
-            </div>
-          <% end %>
+      <div class="container main-container">
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>">
+            <%= message %>
+          </div>
+        <% end %>  
+
         <%# 各ページ本体 %>
         <%= yield %>
       </div>

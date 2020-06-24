@@ -18,4 +18,10 @@ class Client < ApplicationRecord
   # アカウント作成時の苗字名前のカナ入力欄のカタカナのみ入力可能とするバリデーション
   validates :postal_code, format: { with: /\A\d{7}\z/ }
   # アカウント作成時の郵便番号はハイフンなしの7桁のみ登録可能とするバリデーション
+  
+  # 検索機能（部分検索）
+   def self.search(word)
+      Client.where(["first_name LIKE? OR last_name LIKE?" , "%#{word}%","%#{word}%"])
+   end
+  
 end

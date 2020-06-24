@@ -6,12 +6,18 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-     <%= render 'layouts/flash_messages' %>
   </head>
 
   <body>
-    <div id="wrapper">
+    <%# render消して書き足しました（飯田） %>
+    <div class="container main-container">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>">
+          <%= message %>
+        </div>
+      <% end %> 
       <%= yield %>
     </div>
+    <%# ここまで %>
   </body>
 </html>

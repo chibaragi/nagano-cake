@@ -6,22 +6,22 @@
           <tbody>
             <tr>
               <td class="active">注文日</td>
-              <td>2019/11/5</td>
+              <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
             </tr>
             <tr>
               <td class="active">配送先</td>
               <td>
-                <p>1500041 東京都渋谷区神南1-19-11</p>
-                <p>山田花子</p>
+                 <p><%= @order.postal_code %>&emsp;<%= @order.street_address %></p>
+                    <p><%= @order.receive_name %></p>
               </td>
             </tr>
             <tr>
               <td class="active">支払い方法</td>
-              <td>銀行振込</td>
+              <td><%= @order.payment %></td>
             </tr>
             <tr>
               <td class="active">ステータス</td>
-              <td>入金確認</td>
+              <td><%= @order.order_status %></td>
             </tr>
           </tbody>
         </table>
@@ -37,31 +37,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>いちごのショートケーキ</td>
-              <td>500</td>
-              <td>2</td>
-              <td>1,000</td>
-            </tr>
-            <tr>
-              <td>チーズタルト</td>
-              <td>500</td>
-              <td>1</td>
-              <td>500</td>
-            </tr>
+            <% @product_orders.each do |product_order| %>
+                <tr>
+                  <td><%= product_order.product.name %></td>
+                  <td><%= product_order.once_price %></td>
+                  <td><%= product_order.quantity %></td>
+                  <td><%= product_order.once_price * product_order.quantity %>
+                  </td>
+                </tr>
+              <% end %>
           </tbody>
         </table>
-        <!-- <div>
-          <span style="font-weight: bold;">支払い方法&emsp;&emsp;</span>クレジットカード
-        </div>
-        <div>
-          <p>
-            <span style="font-weight: bold;">お届け先&emsp;&emsp;&emsp;</span>1500041 東京都渋谷区神南1-19-11
-          </p> 
-          <p>
-            <span style="font-weight: bold;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span>
-            山田花子</p>
-        </div> -->
       </div>
 
       <div class="col-xs-4" style="margin-top: 50px;">
@@ -70,15 +56,15 @@
           <tbody>
             <tr>
               <td class="active">商品合計</td>
-              <td>1,500</td>
+              <td><%= @sum %></td>
             </tr>
             <tr>
               <td class="active">配送料</td>
-              <td>800</td>
+              <td><%= @order.postage %></td>
             </tr>
             <tr>
               <td class="active">ご請求額</td>
-              <td>2,300</td>
+              <td><%= @order.total_price %></td>
             </tr>
           </tbody>
         </table>

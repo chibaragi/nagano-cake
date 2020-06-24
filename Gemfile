@@ -76,5 +76,3 @@ gem 'pry-byebug'
 gem 'rubocop-airbnb'
 
 gem 'paranoia'
-
-gem 'pry-byebug'

@@ -1,2 +1,16 @@
-<h1>Clients::InsideCarts#index</h1>
-<p>Find me in app/views/clients/inside_carts/index.html.erb</p>
+<% @inside_carts.each do |inside_cart| %>
+  <tr>
+    <td><%= inside_cart.product.name %></td>
+    <td><%= (inside_cart.product.price * 1.1).to_i %></td>
+    <td>
+      <%= form_with model: inside_cart, url: inside_cart_path(id: inside_cart.id), method: :patch, local: true do |f| %>
+        <%= f.number_field :quantity, min: 1, max: 100 %>
+        <%#= f.hidden_field :id, :value => inside_cart.id %>
+        <%= f.submit "変更" %>
+      <% end %>
+    </td>
+    <!-- <td><%= inside_cart.quantity %></td> -->
+    <td><%= (Product.find(inside_cart.product_id).price * 1.1 * inside_cart.quantity).to_i  %></td>
+    <td><%= link_to "削除する", inside_cart_path(id: inside_cart.id), method: :delete, class: "btn btn-danger"  %></td>
+  </tr>
+<% end %>
