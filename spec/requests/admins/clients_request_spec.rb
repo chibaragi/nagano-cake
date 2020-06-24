@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Admins::Clients", type: :request do
-
   describe "GET /show" do
     it "returns http success" do
       get "/admins/clients/show"
@@ -15,5 +14,4 @@ RSpec.describe "Admins::Clients", type: :request do
       expect(response).to have_http_status(:success)
     end
   end
-
 end

@@ -2,12 +2,29 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.jenre li {
-	border-bottom: 1px solid #dee2e6;
-	margin-bottom: 10px;
-	padding-bottom: 10px;
-	list-style: none;
-}
+
 .main-visual {
 	background-image: url(amber-faust-difFvlZVYTI-unsplash.jpeg);
+}
+.detail {
+	float: left;
+}
+.detail span {
+	font-size: 10px;
+}
+.product-box {
+	float: left;
+}
+.column {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.product-image {
+	float: left;
+}
+.main-visual {
+	background-image: url("amber-faust-difFvlZVYTI-unsplash.jpeg");
+	background-size: cover;
+    background-position: center;
 }

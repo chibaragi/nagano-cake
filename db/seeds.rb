@@ -28,3 +28,7 @@ client1=Client.find_by(id: 1)
 # client1.shipping_addresses.build(:receive_name => "佐々木希", :postal_code =>"4444444", :street_address => "東京都渋谷区道玄坂4-4-4")
 # client1.save
 
+Genre.create!(
+	name: 'ケーキ',
+	is_enabled: 'TRUE'
+	)
