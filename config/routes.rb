@@ -1,19 +1,18 @@
 Rails.application.routes.draw do
-
   devise_for :admins, :controllers => {
-     registrations: "admins/registrations",
-     sessions: "admins/sessions"
-   }
+    registrations: "admins/registrations",
+    sessions: "admins/sessions",
+  }
 
-  devise_for :clients, controllers:{
-     registrations: "clients/registrations",
-     sessions: "clients/sessions",
-     confirmations: "clients/confirmations",
-     mailer: "clients/mailer",
-     passwords: "clients/passwords",
-     shared: "clients/shared",
-     unlocks: "clients/unlocks"
-   }
+  devise_for :clients, controllers: {
+    registrations: "clients/registrations",
+    sessions: "clients/sessions",
+    confirmations: "clients/confirmations",
+    mailer: "clients/mailer",
+    passwords: "clients/passwords",
+    shared: "clients/shared",
+    unlocks: "clients/unlocks",
+  }
 
   root "clients/products#top"
 
@@ -36,13 +35,13 @@ Rails.application.routes.draw do
     get "orders/confirm_order"
     get "orders/after_order"
   end
-  #ページ推移の関係で順番を入れ替えてます。あとupdateを追加してます。byけんちゃん　－－ここからーー
+  # ページ推移の関係で順番を入れ替えてます。あとupdateを追加してます。byけんちゃん　－－ここからーー
   scope module: :clients do
     get "clients/withdrawal" => "clients#withdrawal"
     patch "clients/withdrawal" => "clients#withdrawal"
     resources :clients, only: [:show, :edit, :update, :destroy]
   end
-  #ーーここまでーー
+  # ーーここまでーー
   scope module: :clients do
     resources :inside_carts, only: [:create, :index, :update, :destroy]
     delete "inside_carts" => "inside_carts#destroy_all"
@@ -58,7 +57,8 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :inside_carts, only: [:update]
   end
+  #ページの動作の関係でルーティングを増やしてます。byけんちゃん
   namespace :admins do
     resources :clients, only: [:show, :index, :edit, :update, :destroy]
   end
-end 
+end

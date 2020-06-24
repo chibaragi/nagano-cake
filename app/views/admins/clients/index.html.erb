@@ -1,32 +1,35 @@
-<h2>会員一覧</h2>
+<div class=“row”> 
+	<h2>会員一覧</h2>
 
-<table class="table">
-    <thead>
-		<tr>
-			<th>会員ID</th>
-			<th>氏名</th>
-			<th>メールアドレス</th>
-			<th>ステータス</th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<% @clients.each do |client| %>
+	<table class="table">
+	    <thead>
 			<tr>
-				<td><%= client.id %></td>
-				<td style>
-					<%= link_to client.first_name, admins_client_path(client.id)%>
-					<%= link_to client.last_name, admins_client_path(client.id) %>
-				</td>
-  				<td> <%= client.email %></td>
-				<td><% if client.deleted_at == nil %>
-				        <a>有効</a>
-				    <% else %>
-				        <a>退会済</a>
-				    <% end %>
-				</td>
+				<th>会員ID</th>
+				<th>氏名</th>
+				<th>メールアドレス</th>
+				<th>ステータス</th>
 			</tr>
-		<% end %>
-		<%= paginate @clients %>
-	</tbody>
-</table>
+		</thead>
+
+		<tbody>
+			<% @clients.each do |client| %>
+				<tr>
+					<td><%= client.id %></td>
+					<td style>
+						<%= link_to client.first_name, admins_client_path(client.id)%>
+						<%= link_to client.last_name, admins_client_path(client.id) %>
+					</td>
+	  				<td> <%= client.email %></td>
+					<td><% if client.deleted_at == nil %>
+					        <a>有効</a>
+					    <% else %>
+					        <a>退会済</a>
+					    <% end %>
+					</td>
+				</tr>
+			<% end %>
+			<!-- kaminariのgemを使用するための記述 -->
+			<%= paginate @clients %>
+		</tbody>
+	</table>
+</div>
