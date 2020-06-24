@@ -6,7 +6,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.integer :price, null: false
       t.text :explanation, null: false
       t.string :image_id, null: false
-      t.boolean :is_enabled,default: true, null: false
+      t.boolean :is_enabled, default: true, null: false
 
       t.timestamps
     end

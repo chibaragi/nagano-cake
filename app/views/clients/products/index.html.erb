@@ -1,6 +1,7 @@
 <div class="row">
 	<div class="col-xs-9">
-		<h2>商品一覧<span><%= "全#{product.count}件" %></span></h2>
+        <!-- ページが表示できないため、一行消しました -->
+		
 		<% @products.each do |product| %>
     		    <div class="product-box">
     		    	<%= link_to user_path(book.user) do %>
