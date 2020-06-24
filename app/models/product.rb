@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Product < ApplicationRecord
   belongs_to :genre
   has_many :inside_carts, dependent: :destroy

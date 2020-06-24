@@ -24,16 +24,16 @@ Rails.application.routes.draw do
   end
   # ここまで
 
-
   namespace :admins do
-    resources :products, only: [:new, :show, :create, :edit, :index, :update]
+    resources :products, only: %i[new show create edit index update]
   end
   scope module: :clients do
-    resources :products, only: [:show, :index]
-    get "genres/:id/genre_products" => "products#genre_products"
+    resources :products, only: %i[show index]
+    get 'genres/:id/genre_products' => 'products#genre_products'
   end
 
   namespace :admins do
+
     # ここから飯田が変更しました（resourcesより先に書かないとうまく表示されない／アクションproduct_orders_update追加／updateをorder_status_updateに変更）
     get "orders/top" => "orders#top"
     patch "orders/order_status" => "orders#order_status_update"
@@ -58,16 +58,16 @@ Rails.application.routes.draw do
   end
   # ーーここまでーー
   scope module: :clients do
-    resources :inside_carts, only: [:create, :index, :update, :destroy]
-    delete "inside_carts" => "inside_carts#destroy_all"
+    resources :inside_carts, only: %i[create index update destroy]
+    delete 'inside_carts' => 'inside_carts#destroy_all'
   end
 
   scope module: :clients do
-    resources :shipping_addresses, only: [:new, :create, :edit, :update, :destroy]
+    resources :shipping_addresses, only: %i[new create edit update destroy]
   end
 
   namespace :admins do
-    resources :genres, only: [:create, :index, :update, :edit]
+    resources :genres, only: %i[create index update edit]
   end
   namespace :admins do
     resources :inside_carts, only: [:update]
@@ -82,5 +82,4 @@ Rails.application.routes.draw do
   namespace :admins do
     get 'search' => 'searches#search'
   end
-
 end

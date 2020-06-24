@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 class Admins::ClientsController < ApplicationController
+
   #全体を通して記述している「.with_deleted」は論理削除したテーブルを含めるための記述。
   #paranoiaのgemの効果で.with_deletedを使用しない普通のやり方だと論理削除したテーブルを除外してくれる。
   #例えば　Client.all と書くと普通はclientモデルの中身全てを参照するが、paranoiaのgemにより論理削除したテーブルを参照しなくなる。
@@ -29,4 +32,5 @@ class Admins::ClientsController < ApplicationController
   def client_params
     params.require(:client).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :phone_number, :postal_code, :street_address, :deleted_at)
   end
+
 end

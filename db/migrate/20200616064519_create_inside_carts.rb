@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateInsideCarts < ActiveRecord::Migration[5.2]
   def change
     create_table :inside_carts do |t|

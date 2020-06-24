@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Clients::OrdersController < ApplicationController
   before_action :authenticate_client!
 
@@ -53,6 +55,7 @@ class Clients::OrdersController < ApplicationController
     end
   end
 
+
   def confirm_order
     @inside_carts = current_client.inside_carts.all
     @order = Order.new(
@@ -106,8 +109,8 @@ class Clients::OrdersController < ApplicationController
     end
   end
 
-  def after_order
-  end
+  def after_order; end
+
 
   def index
     @orders = current_client.orders.all

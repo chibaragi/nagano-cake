@@ -1,47 +1,40 @@
-<h1>Clients::ShippingAddresses#new</h1>
-<p>Find me in app/views/clients/shipping_addresses/new.html.erb</p>
-
+<div class="row">
+<div class="style= margin-top: 50px;">
 <h2>配送先登録/一覧</h2>
 
-<form class="container">
-	<dl>
-		<div class="form-item">
-			<dt>郵便番号(ハイフンなし)</dt>
-			<dd><input type="text" name="postal code"></dd>
-		</div>
+<%= form_for(@shipping_address) do |f| %>
+	<%#= render "layouts/error_messages", model: f.object %>
+	<p>郵便番号(ハイフンなし)</p>
+	<%= f.text_field :postal_code %>
+	<p>住所</p>
+	<%= f.text_area :street_address %>
+	<p>宛名</p>
+	<%= f.text_area :receive_name %>
 
-		<div class="form-item">
-			<dt>住所</dt>
-			<dd><input type="text" name="adress"></dd>
-		</div>
+	<%= f.submit "登録する", class: "btn btn-primary" %>
+<% end %>
 
-		<div class="form-item">
-			<dt>宛名</dt>
-			<dd><input type="text" name="receive_name"></dd>
-		</div>
-	</dl>
-	<div class="form-submit">
-		<input type="submit" value="登録する">
-	</div>
-</form>
-
-<table>
-	<tr>
-		<th>郵便番号</th>
-		<th>住所</th>
-		<th>宛名</th>
-		<th>&nbsp;</th>
-	</tr>
-	<tr>
-		<td>2440812</td>
-		<td>神奈川県横浜市戸塚区柏尾3-9-10</td>
-		<td>梅木匠</td>
-		<td><input type="button" value="編集する"><input type="button" value="削除する"></td>
-	</tr>
-	<tr>
-		<td>4001114</td>
-		<td>山梨県甲斐市打返4-15-19</td>
-		<td>小沢時夫</td>
-		<td><input type="button" value="編集する"><input type="button" value="削除する"></td>
-	</tr>
+<table class="container">
+	<thead>
+		<tr>
+			<th>郵便番号</th>
+			<th>住所</th>
+			<th>宛名</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @shipping_addresses.each do |shipping_address|  %>
+			<tr>
+				<td><%= shipping_address.postal_code %></td>
+				<td><%= shipping_address.street_address %></td>
+				<td><%= shipping_address.receive_name %></td>
+				<td><%= link_to "編集する", edit_shipping_address_path(shipping_address.id),class: "btn btn-primary"%></td>
+				<td><%= link_to "削除する", shipping_address_path(shipping_address.id),  class: "btn btn-danger", method: :delete %></td>
+			</tr>
+		<% end %>
+	</tbody>
+	
 </table>
+</div>
+</div>

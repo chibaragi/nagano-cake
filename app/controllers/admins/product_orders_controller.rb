@@ -1,6 +1,5 @@
-class Admins::ProductOrdersController < ApplicationController
-  def update
+# frozen_string_literal: true
 
-    # 消したい
-  end
+class Admins::ProductOrdersController < ApplicationController
+
 end
