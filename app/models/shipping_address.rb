@@ -8,4 +8,8 @@ class ShippingAddress < ApplicationRecord
     validates :postal_code, format: { with: /\A\d{7}\z/ }
     validates :street_address
   end
+
+  def full_address
+    [postal_code, street_address, receive_name].join('')
+  end
 end

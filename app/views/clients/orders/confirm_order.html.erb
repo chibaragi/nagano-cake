@@ -11,47 +11,32 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>いちごのショートケーキ</td>
-              <td>1,100</td>
-              <td>1</td>
-              <td>1,100</td>
-            </tr>
-            <tr>
-              <td>チーズタルト</td>
-              <td>330</td>
-              <td>2</td>
-              <td>660</td>
-            </tr>
+            <% @inside_carts.each do |inside_cart| %>
+              <tr>
+                <td><%= inside_cart.product.name %></td>
+                <td><%= (inside_cart.product.price * 1.1).to_i%></td>
+                <td><%= inside_cart.quantity %></td>
+                <td><%= (Product.find(inside_cart.product_id).price * 1.1 * inside_cart.quantity).to_i  %>
+                </td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
-
         <table class="table" style="margin-top: 50px;">
           <tbody>
             <tr>
               <th scope="row">支払い方法</th>
-              <td>クレジットカード</td>
+              <td><%= @order.payment %></td>
             </tr>
             <tr>
               <th scope="row">お届け先</th>
               <td>
-                <p>1500041 東京都渋谷区神南1-19-11</p>
-                <p>山田花子</p>
+                <p><%= @order.postal_code %>&emsp;<%= @order.street_address %></p>
+                <p><%= @order.receive_name %></p>
               </td>
             </tr>
           </tbody>
         </table>
-        <!-- <div>
-          <span style="font-weight: bold;">支払い方法&emsp;&emsp;</span>クレジットカード
-        </div>
-        <div>
-          <p>
-            <span style="font-weight: bold;">お届け先&emsp;&emsp;&emsp;</span>1500041 東京都渋谷区神南1-19-11
-          </p> 
-          <p>
-            <span style="font-weight: bold;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span>
-            山田花子</p>
-        </div> -->
       </div>
 
       <div class="col-xs-4" style="margin-top: 50px;">
@@ -59,15 +44,15 @@
           <tbody>
             <tr>
               <td class="active">送料</td>
-              <td>800</td>
+              <td><%= @order.postage %></td>
             </tr>
             <tr>
               <td class="active">商品合計</td>
-              <td>1,760</td>
+              <td><%= @sum %></td>
             </tr>
             <tr>
               <td class="active">請求合計</td>
-              <td>2,560</td>
+              <td><%= @sum + @order.postage %></td>
             </tr>
           </tbody>
         </table>
@@ -75,6 +60,8 @@
     </div>
     <div class="row">
       <div class="col-xs-offset-5">
-        <a class="btn btn-success " href="#" role="button">購入を確定する</a>
+        <%= form_with(model: @order, url:orders_path, method: :post, local: true) do |f| %>
+              <%= f.submit "注文を確定する",class:"btn btn-primary col-xs-12" %>
+        <% end %>
       </div>
     </div>
