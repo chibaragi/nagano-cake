@@ -33,99 +33,75 @@
  .main-container {
    margin-top: 100px;
    padding-top: 30px;
-   /* background-color: aqua; */
  }
 
-//  ここから下全部書き直しました（飯田）
+//  ここから下全部書き直しました!!!!!!!（飯田）
  /* ヘッダー */
-//  .shop_logo{
-//   width:100px;
-//   height:100px;
-//  }
  header{
-   
    background-color: #95D8C1;
-
  }
  .header-logo{
    font-weight: bold;
-   font-size:20px;
+   font-size:40px;
+   padding-top: 30px;
  }
- .nav-item{
+ .nav-item,.admin-nav-item{
    color:#666;
    font-size:15px;
    height:70px;
-  //  background-color: #95D8C1;
+ }
+ .navbar-nav li a{
+  line-height: 40px;
  }
  .client-name{
   display:inline-block;
-  // height:70px;
-  padding-top:15px;
-  padding-left:10%;
+  font-size: 20px;
+  padding-top:20px;
+  padding-left:30%;
+  width:350px;
  }
  @media (max-width: 767px) {
   .main-container {
-    margin-top: 275px;
+    margin-top: 250px;
   }
+  .nav-item{
+     height:40px;
+   }
    .header-logo{
      display:block;
      width: 100%;
    }
    .client-name{
-   padding-left:0;
+   padding-left:30px;
+  }
+  .adjust{
+    display:inline-block;
   }
  }
-
-
-// ***********
-
-// .header-logo{
-//   font-weight: bold;
-//   font-size:20px;
-//   height:70px;
-// }
+//  管理者
 .admin-header{
-// background-color: lightgreen;
-// margin-bottom:30px;
+height:100px;
 }
-
-
-// .admin-nav-item{
-//   color:#666;
-//   font-size:15px;
-//   // background-color: #95D8C1;
-//   // height:100px;
-// }
-// .admin-nav-bars{
-//   // background-color: blue;
-//   height:50px
-// }
-
-
-// //  検索窓
-// .search-window{
-//   // display:inline-block;
-//   // background-color: #fff;
-//   height:30px;
-//   width:50%;
-//   margin-left:auto;
-//   margin-bottom:20px;
-// }
-
-
-// @media (max-width: 767px) {
-//   header{
-//    height: 275px;
-//   }
-//   .header-logo{
-//     display:block;
-//     height:60px;
-//   }
-//   .admin-nav-item{
-//     // color:#666;
-//     // font-size:15px;
-//     height:60px;
-//   }
-
-// }
+.search-window{
+  height:30px;
+  width:50%;
+  margin-left:auto;
+  margin-bottom:20px;
+}
+@media (max-width: 767px) {
+  .admin-header{
+   height: 300px;
+  }
+  .main-container {
+    margin-top: 300px;
+  }
+  .admin-nav-item{
+     font-size:15px;
+     height:40px;
+   }
+   .search-window{
+    width:100%;
+  }
+ }
+//  ここまで
 
