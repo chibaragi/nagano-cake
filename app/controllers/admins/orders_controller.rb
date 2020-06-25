@@ -1,7 +1,4 @@
-# frozen_string_literal: true
-
 class Admins::OrdersController < ApplicationController
-
   before_action :authenticate_admin!
   def top
     from = Time.current.beginning_of_day

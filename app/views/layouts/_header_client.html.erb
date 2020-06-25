@@ -1,10 +1,8 @@
  <nav class="nav navbar-brand navbar-left header-logo">
-  <%#= image_tag('nagano_cafe_logo.PNG', class: 'shop_logo') %>
-  <%# NaganoCake %>
-    <%= link_to root_path,class:"header-logo-letter" do %>NaganoCake<% end %>
+    <%= link_to root_path,class:"header-logo-letter" do %> <%= image_tag('logo.png', class: 'login_shop_logo') %><% end %>
 </nav>
  <nav class="nav navbar-nav">
-  <span class="client-name">
+  <span class="client-name  login-client-name">
     ようこそ、<%= current_client.first_name %><%= current_client.last_name %>さん！
   </span>
   </nav>
