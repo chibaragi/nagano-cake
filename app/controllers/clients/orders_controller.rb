@@ -13,14 +13,13 @@ class Clients::OrdersController < ApplicationController
     @client = Client.find(current_client.id)
     if  order_params[:payment] == nil
       flash[:danger] = "支払い方法を入力してください"
-      render :new
+      redirect_back(fallback_location: root_path)
     else
       if params[:selected_address] == "radio1"
         session[:payment] = order_params[:payment]
         session[:postal_code] = @client.postal_code
         session[:street_address] = @client.street_address
         session[:receive_name] = @client.first_name + @client.last_name
-
         redirect_to orders_confirm_order_path
       elsif params[:selected_address] == "radio2"
         session[:payment] = order_params[:payment]

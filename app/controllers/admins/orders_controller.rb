@@ -72,7 +72,6 @@ class Admins::OrdersController < ApplicationController
       end
     end
   end
-
   # 注文ステータスが「入金確認」になったら紐づく製作ステータス全てを「製作待ち」に自動更新
   def order_status_is_deposited?(order)
     if order.order_status_before_type_cast == 1
@@ -82,7 +81,6 @@ class Admins::OrdersController < ApplicationController
       flash[:info] = "製作ステータスが「製作待ち」に更新されました"
     end
   end
-
   # 製作ステータスが全部「製作完了」になったら注文ステータスが「発送準備中」に自動更新
   def product_order_status_is_production_complete?(order)
     if  order.product_orders.all? do |p|
@@ -92,7 +90,6 @@ class Admins::OrdersController < ApplicationController
       flash[:success] = "注文ステータスが「発送準備中」に更新されました"
     end
   end
-
   # 製作ステータスが一つでも「製作中」になったら注文ステータスが「製作中」に自動更新
   def product_order_status_is_in_production?(product_order)
     if product_order.product_order_status_before_type_cast == 2
@@ -100,5 +97,4 @@ class Admins::OrdersController < ApplicationController
       flash[:success] = "注文ステータスが「製作中」に更新されました"
     end
   end
-
 end

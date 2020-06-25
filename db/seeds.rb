@@ -36,10 +36,10 @@
    # Product.create!(:genre_id => 4, :name => 'ブドウキャンディ', :price => 250, :explanation => "ブドウキャンディの詰め合わせです。", :image_id => "", :is_enabled => true)
 
 # ここからInsideCart(4つ)
-   InsideCart.create!(:client_id => 1, :product_id => 1, :quantity => 1)
-   InsideCart.create!(:client_id => 1, :product_id => 2, :quantity => 2)
-   InsideCart.create!(:client_id => 1, :product_id => 3, :quantity => 1)
-   InsideCart.create!(:client_id => 1, :product_id => 4, :quantity => 3)
+   # InsideCart.create!(:client_id => 1, :product_id => 1, :quantity => 1)
+   # InsideCart.create!(:client_id => 1, :product_id => 2, :quantity => 2)
+   # InsideCart.create!(:client_id => 1, :product_id => 3, :quantity => 1)
+   # InsideCart.create!(:client_id => 1, :product_id => 4, :quantity => 3)
 
 # ここからProductOrder(６つ、order２回分)
    # ProductOrder.create!(:order_id => 1, :product_id => 1, :quantity => 2, :once_price => 1100,:product_order_status => 0)
@@ -49,3 +49,5 @@
    # ProductOrder.create!(:order_id => 4, :product_id => 2, :quantity => 2, :once_price => 550 ,:product_order_status => 2)
    # ProductOrder.create!(:order_id => 4, :product_id => 3, :quantity => 1, :once_price => 330,:product_order_status => 3)
    # ProductOrder.create!(:order_id => 4, :product_id => 4, :quantity => 3, :once_price => 275,:product_order_status => 4)
+   Genre.create!(:name => "和菓子", :is_enabled => false)
+   Genre.create!(:name => "ゼリー", :is_enabled => false)
