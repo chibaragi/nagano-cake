@@ -5,15 +5,16 @@ class Clients::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @inside_carts = InsideCart.new
+    @inside_cart = InsideCart.new
   end
 
   def top
     @products = Product.order("RANDOM()").limit(6)
   end
 
-  def genre_products
-  end
+  # ここ消したい（飯田）
+  # def genre_products
+  # end
 
   def _genre_serch_form
     @genres = Genre.all

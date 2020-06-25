@@ -52,7 +52,7 @@ Rails.application.routes.draw do
   end
   
   scope module: :clients do
-    resources :inside_carts, only: %i[create index update destroy]
+    resources :inside_carts, only: [:create, :index, :update, :destroy]
     delete 'inside_carts' => 'inside_carts#destroy_all'
   end
 

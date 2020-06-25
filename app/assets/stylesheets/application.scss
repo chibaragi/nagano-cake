@@ -44,6 +44,13 @@
    font-size:40px;
    padding-top: 30px;
  }
+ .header-logo-letter{
+  color:#666;
+  &:hover{
+    color:#666;
+    text-decoration:none;
+  }
+ }
  .nav-item,.admin-nav-item{
    color:#666;
    font-size:15px;
@@ -89,10 +96,10 @@ height:100px;
 }
 @media (max-width: 767px) {
   .admin-header{
-   height: 300px;
+   height: 330px;
   }
   .main-container {
-    margin-top: 300px;
+    margin-top: 330px;
   }
   .admin-nav-item{
      font-size:15px;
@@ -102,3 +109,7 @@ height:100px;
     width:100%;
   }
  }
+//  ここから飯田が追加
+.quantity-select-form{
+  width:100px;
+}

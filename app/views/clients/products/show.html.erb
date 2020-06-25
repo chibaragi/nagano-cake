@@ -3,7 +3,7 @@
 	</div>
 	<div class="col-xs-4">
 		<div class="product-image">
-			<%= attachment_image_tag(@product, :image, :fill, 250, 200, fallback: "no-image.jpg") %>
+			<%= attachment_image_tag(@product, :image, :fill, 250, 200, fallback: "no_image.jpg") %>
 		</div>
 	</div>
 	<div class="col-xs-5">
@@ -14,11 +14,13 @@
 		</div>
 		<div>
 
+		<%# 下記変更（飯田） %>
     <%= form_with(model: @inside_cart, url: inside_carts_path, method: :post, local: true) do |f| %>
       <%= f.label :quantity, "個数選択" %>
-     　<%= f.number_field :quantity, min: 1, max: 100 %>
+     <%= f.number_field :quantity, min: 1, max: 100,placeholder: "個数選択",class:"quantity-select-form" %>
       <%= f.hidden_field :id, :value => @product.id %>
-      <%= f.submit "カートに入れる" %>
+      <%= f.submit "カートに入れる",class: "btn btn-primary" %>
     <% end %>
+		 <%# ここまで %>
   </div>
 </div>
