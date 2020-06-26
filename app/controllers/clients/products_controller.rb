@@ -1,13 +1,15 @@
 class Clients::ProductsController < ApplicationController
-  # このページ全体的に変更（飯田）←にしくんが同じ変更してたら不要！！！！
+
   # ジャンルが有効かつ商品も販売中の商品のshowとupdateできないようにする
   before_action :ensure_enabled_product, only: [:show, :update]
   def index
     @genres = Genre.where(is_enabled: true)
     if params[:genre_id].nil?
+      @products_all = Product.joins(:genre).where(genres: { is_enabled: true }).where(is_enabled: true)
       # ジャンルが有効かつ商品も販売中の商品のみ表示させる
       @products = Product.joins(:genre).where(genres: { is_enabled: true }).where(is_enabled: true).page(params[:page]).reverse_order
     else
+      @products_all = Product.joins(:genre).where(genres: { is_enabled: true, id: params[:genre_id] }).where(is_enabled: true)
       @products = Product.joins(:genre).where(genres: { is_enabled: true, id: params[:genre_id] }).where(is_enabled: true).page(params[:page]).reverse_order
     end
   end

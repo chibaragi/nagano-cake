@@ -1,9 +1,9 @@
 class Clients::InsideCartsController < ApplicationController
-  # ここ以下変更（飯田）←かんちゃんが同じ変更してたら不要
+
   before_action :authenticate_client!
   def create
     @inside_carts = current_client.inside_carts.all
-    if  inside_carts_params[:quantity] != ""
+    if inside_carts_params[:quantity] != ""
       if @inside_carts.any? { |inside_cart| inside_cart.product_id == params[:inside_cart][:id].to_i }
         @inside_cart_already = InsideCart.find_by(product_id: params[:inside_cart][:id].to_i)
         @inside_cart_already.quantity += params[:inside_cart][:quantity].to_i
@@ -24,9 +24,8 @@ class Clients::InsideCartsController < ApplicationController
       flash[:danger] = "個数を入力してください"
       redirect_back(fallback_location: root_path)
     end
-  end
+   end
 
-  # ここまで（飯田）
   def index
     @inside_carts = current_client.inside_carts.all
     @sum = 0
@@ -53,6 +52,7 @@ class Clients::InsideCartsController < ApplicationController
 
   def destroy_all
     current_client.inside_carts.destroy_all
+    flash[:danger] = "カートが空です"
     redirect_to inside_carts_path
   end
 

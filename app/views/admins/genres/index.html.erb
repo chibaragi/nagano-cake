@@ -6,13 +6,13 @@
 	<p>ジャンル</p>
 	<%= f.text_field :name %>
 
-	<%= f.radio_button :is_enabled, "true" %> 有効　
-	<%= f.radio_button :is_enabled, "faulse" %> 無効
+	<label><%= f.radio_button :is_enabled, "true" %>有効</label>　
+	<label><%= f.radio_button :is_enabled, "false" %>無効</label>
 
-	<%= f.submit '追加', class: 'btn btn-default' %>
+	<%= f.submit '追加', class: 'btn btn-primary' %>
 <%end%>
 
-<table>
+<table class="table table-bordere">
 	<thead>
 		<tr>
 			<th>ジャンル</th>
@@ -24,8 +24,14 @@
 		<% @genres.each do |genre| %>
 			<tr>
 				<td><%= genre.name %></td>
-				<td><%= genre.is_enabled %></td>
-				<td><%= link_to "編集する", edit_admins_genre_path(genre.id), class: 'btn btn-default' %></td>
+				<td>
+					<% if genre.is_enabled == true %>
+  							有効
+					<% else %>
+   							無効
+ 					<% end %>
+ 				</td>
+				<td><%= link_to "編集する", edit_admins_genre_path(genre.id), class: 'btn btn-success' %></td>
 			</tr>
 		<% end %>
 	</tbody>

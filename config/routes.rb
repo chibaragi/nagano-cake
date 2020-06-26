@@ -32,7 +32,6 @@ Rails.application.routes.draw do
     # 登録先住所
     resources :shipping_addresses, only: %i(new create edit update destroy)
   end
-
   namespace :admins do
     root 'orders#top'
     # 商品

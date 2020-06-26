@@ -13,6 +13,9 @@ class Client < ApplicationRecord
   has_many :products, through: :inside_carts
   has_many :orders, dependent: :destroy
 
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :street_address, presence: true
   validates :phone_number, format: { with: /\A\d{10,11}\z/ }
   # アカウント作成時の電話番号はハイフンなしの10桁もしくは11桁のみ登録可能とするバリデーション
   validates :first_name_kana, :last_name_kana, presence: true, format: { with: /\A([ァ-ン]|ー)+\z/, message: "is must NOT contain any other characters than alphanumerics." }

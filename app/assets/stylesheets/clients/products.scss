@@ -24,11 +24,22 @@
 	float: left;
 }
 .main-visual {
-	background-image: url("amber-faust-difFvlZVYTI-unsplash.jpeg");
-	background-size: cover;
-  background-position: center;
+    width: 500px;
+    height: 70px;
 }
-// ここから飯田追加
+.index-link {
+	float: right;
+}
+.top_image {
+	width: 90%;
+	margin-bottom: 30px;
+}
+.recommend h2{
+	padding-top: 30px;
+}
+
+// 以下、ジャンル検索部分テンプレート
+
 .genre_search_table{
 	text-align: center;
 	color:#B72025;
@@ -54,4 +65,3 @@
 		background-color: #eee;
 	}
 }
-
