@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Admins::OrdersController < ApplicationController
-
   before_action :authenticate_admin!
   def top
     from = Time.current.beginning_of_day
@@ -49,6 +48,7 @@ class Admins::OrdersController < ApplicationController
   end
 
   private
+
   def order_params
     params.require(:order).permit(:order_status)
   end
@@ -100,5 +100,4 @@ class Admins::OrdersController < ApplicationController
       flash[:success] = "注文ステータスが「製作中」に更新されました"
     end
   end
-
 end

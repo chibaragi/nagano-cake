@@ -1,4 +1,4 @@
-<div class=“row”> 
+<div class=“row”>
 	<h2>会員一覧</h2>
 
 	<table class="table">
@@ -21,9 +21,9 @@
 					</td>
 	  				<td> <%= client.email %></td>
 					<td><% if client.deleted_at == nil %>
-					        <a>有効</a>
+					        有効
 					    <% else %>
-					        <a>退会済</a>
+					        退会
 					    <% end %>
 					</td>
 				</tr>

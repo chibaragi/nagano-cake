@@ -54,7 +54,6 @@ class Clients::OrdersController < ApplicationController
     end
   end
 
-
   def confirm_order
     @inside_carts = current_client.inside_carts.all
     @order = Order.new(
@@ -110,7 +109,6 @@ class Clients::OrdersController < ApplicationController
 
   def after_order; end
 
-
   def index
     @orders = current_client.orders.all
   end
@@ -125,6 +123,7 @@ class Clients::OrdersController < ApplicationController
   end
 
   private
+
   def order_params
     params.require(:order).permit(:payment, :receive_name, :postal_code, :street_address)
   end
