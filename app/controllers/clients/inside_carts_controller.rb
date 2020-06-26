@@ -4,6 +4,7 @@ class Clients::InsideCartsController < ApplicationController
   before_action :authenticate_client!
   def create
     @inside_carts = current_client.inside_carts.all
+
     if inside_carts_params[:quantity] != ""
       if @inside_carts.any? { |inside_cart| inside_cart.product_id == params[:inside_cart][:id].to_i }
         @inside_cart_already = InsideCart.find_by(product_id: params[:inside_cart][:id].to_i)
@@ -26,6 +27,7 @@ class Clients::InsideCartsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
    end
+
 
   def index
     @inside_carts = current_client.inside_carts.all
