@@ -1,25 +1,33 @@
 # frozen_string_literal: true
 
 class Clients::InsideCartsController < ApplicationController
+  before_action :authenticate_client!
   def create
     @inside_carts = current_client.inside_carts.all
-    if @inside_carts.any? { |inside_cart| inside_cart.product_id == params[:inside_cart][:id].to_i }
-      @inside_cart_already = InsideCart.find_by(product_id: params[:inside_cart][:id].to_i)
-      @inside_cart_already.quantity += params[:inside_cart][:quantity].to_i
-      @inside_cart_already.save
-      flash[:success] = "カートに商品を入れました"
-      redirect_to inside_carts_path
+
+    if inside_carts_params[:quantity] != ""
+      if @inside_carts.any? { |inside_cart| inside_cart.product_id == params[:inside_cart][:id].to_i }
+        @inside_cart_already = InsideCart.find_by(product_id: params[:inside_cart][:id].to_i)
+        @inside_cart_already.quantity += params[:inside_cart][:quantity].to_i
+        @inside_cart_already.save
+        flash[:success] = "カートに商品を入れました"
+        redirect_to inside_carts_path
+      else
+        @inside_cart = InsideCart.new(
+          quantity: params[:inside_cart][:quantity].to_i,
+          product_id: params[:inside_cart][:id].to_i,
+          client_id: current_client.id
+        )
+        @inside_cart.save
+        flash[:success] = "カートに商品を入れました"
+        redirect_to inside_carts_path
+      end
     else
-      @inside_cart = InsideCart.new(
-        quantity: params[:inside_cart][:quantity].to_i,
-        product_id: params[:inside_cart][:id].to_i,
-        client_id: current_client.id
-      )
-      @inside_cart.save
-      flash[:success] = "カートに商品を入れました"
-      redirect_to inside_carts_path
+      flash[:danger] = "個数を入力してください"
+      redirect_back(fallback_location: root_path)
     end
-  end
+   end
+
 
   def index
     @inside_carts = current_client.inside_carts.all
@@ -45,12 +53,13 @@ class Clients::InsideCartsController < ApplicationController
   def destroy
     inside_carts = InsideCart.find_by(id: params[:id], client_id: current_client.id)
     inside_carts.destroy
-
+    flash[:danger] = "カートから削除しました"
     redirect_to inside_carts_path
   end
 
   def destroy_all
     current_client.inside_carts.destroy_all
+    flash[:danger] = "カートが空です"
     redirect_to inside_carts_path
   end
 

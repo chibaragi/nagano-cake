@@ -8,7 +8,6 @@ class Product < ApplicationRecord
   has_many :orders, through: :product_orders
   attachment :image
 
-
   validates :image, presence: true
   validates :name, presence: true
   validates :explanation, presence: true
@@ -19,8 +18,6 @@ class Product < ApplicationRecord
     message: "価格は半角数字で入力してください",
   }
 
-
- 
   # 検索機能（部分検索）
   def self.search(word)
     Product.where("name LIKE?", "%#{word}%")

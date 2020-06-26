@@ -14,16 +14,22 @@ class Clients::ShippingAddressesController < ApplicationController
     shipping_address = ShippingAddress.new(shipping_address_params)
     shipping_address.client_id = current_client.id
     shipping_address.save
-    flash[:danger] = '必要情報を入力してください'
-    flash[:danger] = 'ハイフンは入力できません'
+    flash[:danger] =
+      '必要情報を入力してください／ハイフンは使用できません'
     redirect_to new_shipping_address_path
   end
 
   def update
     shipping_address = ShippingAddress.find(params[:id])
-    shipping_address.update(shipping_address_params)
-    flash[:danger] = '必要情報を入力してください'
-    redirect_to new_shipping_address_path
+    if shipping_address.update(shipping_address_params)
+      flash[:success] = '編集を保存しました'
+      redirect_to new_shipping_address_path
+    else
+      @shipping_address = ShippingAddress.find(params[:id])
+      flash[:danger] =
+        '必要情報を入力してください／ハイフンは使用できません'
+      render "clients/shipping_addresses/edit"
+    end
   end
 
   def destroy

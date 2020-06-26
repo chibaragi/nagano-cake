@@ -20,7 +20,9 @@ class Admins::GenresController < ApplicationController
     @genre = Genre.find(params[:id])
     if @genre.update(genre_params)
       redirect_to admins_genres_path
+      flash[:success] = "編集に成功しました"
     else
+      flash[:danger] = "編集に失敗しました"
       render :edit
     end
   end
@@ -28,6 +30,6 @@ class Admins::GenresController < ApplicationController
   private
 
   def genre_params
-    params.require(:genre).permit(:name)
+    params.require(:genre).permit(:name, :is_enabled)
   end
 end
