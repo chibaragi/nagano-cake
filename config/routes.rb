@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   scope module: :clients do
     root 'products#top'
     # 商品
-    resources :products, only: %i[show index]
+    resources :products, only: %i(show index)
     get 'genres/:id/genre_products' => 'products#genre_products'
     # 注文
     post "orders/pre_create" => "orders#pre_create"
@@ -29,21 +29,21 @@ Rails.application.routes.draw do
     # カート
     resources :inside_carts, only: [:create, :index, :update, :destroy]
     delete 'inside_carts' => 'inside_carts#destroy_all'
-    # 登録先住所 
-    resources :shipping_addresses, only: %i[new create edit update destroy]
+    # 登録先住所
+    resources :shipping_addresses, only: %i(new create edit update destroy)
   end
 
   namespace :admins do
     root 'orders#top'
     # 商品
-    resources :products, only: %i[new show create edit index update]
+    resources :products, only: %i(new show create edit index update)
     # 注文
     get "orders/top" => "orders#top"
     patch "orders/order_status" => "orders#order_status_update"
     patch "orders/product_orders_status" => "orders#product_orders_status_update"
     resources :orders, only: [:show, :index]
     # ジャンル
-    resources :genres, only: %i[create index update edit]
+    resources :genres, only: %i(create index update edit)
     # カート
     resources :inside_carts, only: [:update]
     # 会員

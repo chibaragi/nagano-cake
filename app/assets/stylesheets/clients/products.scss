@@ -26,5 +26,32 @@
 .main-visual {
 	background-image: url("amber-faust-difFvlZVYTI-unsplash.jpeg");
 	background-size: cover;
-    background-position: center;
+  background-position: center;
 }
+// ここから飯田追加
+.genre_search_table{
+	text-align: center;
+	color:#B72025;
+}
+.genre_search_list{
+	list-style-type: none;
+}
+.genre_search_name{
+	color:#B72025;
+	&:hover{
+		color:#B72025;
+		text-decoration: none;
+	}
+}
+.genre_search_head{
+	text-align: center;
+	font-size: 2rem;
+	color:#B72025;
+	background-color: rgb(245, 245, 159);
+}
+.table-body{
+	&:hover{
+		background-color: #eee;
+	}
+}
+

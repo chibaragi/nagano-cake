@@ -8,10 +8,10 @@ class Product < ApplicationRecord
   has_many :orders, through: :product_orders
   attachment :image
 
-#  ここから追加（飯田）
+  #  ここから追加（飯田）
   # 検索機能（部分検索）
   def self.search(word)
-      Product.where("name LIKE?", "%#{word}%")
+    Product.where("name LIKE?", "%#{word}%")
   end
   # ここまで
 end
