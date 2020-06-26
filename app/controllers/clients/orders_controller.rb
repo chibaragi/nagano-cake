@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Clients::OrdersController < ApplicationController
   before_action :authenticate_client!
   def new
@@ -11,46 +9,50 @@ class Clients::OrdersController < ApplicationController
 
   def pre_create
     @client = Client.find(current_client.id)
-    if params[:selected_address] == "radio1"
-      session[:payment] = order_params[:payment]
-      session[:postal_code] = @client.postal_code
-      session[:street_address] = @client.street_address
-      session[:receive_name] = @client.first_name + @client.last_name
-
-      redirect_to orders_confirm_order_path
-    elsif params[:selected_address] == "radio2"
-      session[:payment] = order_params[:payment]
-      if params[:regestrated_address][:regestrated_address] == ""
-        flash[:danger] = "登録済み住所を選択してください"
-        redirect_back(fallback_location: root_path)
-      else
-        @selected_shipping_address = @client.shipping_addresses.find(params[:regestrated_address][:regestrated_address])
-        session[:postal_code] = @selected_shipping_address.postal_code
-        session[:street_address] = @selected_shipping_address.street_address
-        session[:receive_name] = @selected_shipping_address.receive_name
-        redirect_to orders_confirm_order_path
-      end
-    elsif params[:selected_address] == "radio3"
-      session[:payment] = order_params[:payment]
-      session[:postal_code] = order_params[:postal_code]
-      session[:street_address] = order_params[:street_address]
-      session[:receive_name] = order_params[:receive_name]
-      # shipping_addressesのインスタンス（外部キーにclient＿idが入ってる）を作成
-      @shipping_address = @client.shipping_addresses.build
-      # shipping_addressesテーブルに保存
-      @shipping_address.postal_code = order_params[:postal_code]
-      @shipping_address.street_address = order_params[:street_address]
-      @shipping_address.receive_name = order_params[:receive_name]
-      if @shipping_address.save
-        flash[:success] = "新しいお届け先が保存されました"
-        redirect_to orders_confirm_order_path
-      else
-        flash[:danger] = "新しいお届け先の情報を正しく入力してください"
-        render :new
-      end
-    else # どのラジオボタンも選択されていないときは同じページに返す
-      flash[:danger] = "必要情報を入力してください"
+    if order_params[:payment].nil?
+      flash[:danger] = "支払い方法を入力してください"
       redirect_back(fallback_location: root_path)
+    else
+      if params[:selected_address] == "radio1"
+        session[:payment] = order_params[:payment]
+        session[:postal_code] = @client.postal_code
+        session[:street_address] = @client.street_address
+        session[:receive_name] = @client.first_name + @client.last_name
+        redirect_to orders_confirm_order_path
+      elsif params[:selected_address] == "radio2"
+        session[:payment] = order_params[:payment]
+        if params[:regestrated_address][:regestrated_address] == ""
+          flash[:danger] = "登録済み住所を選択してください"
+          redirect_back(fallback_location: root_path)
+        else
+          @selected_shipping_address = @client.shipping_addresses.find(params[:regestrated_address][:regestrated_address])
+          session[:postal_code] = @selected_shipping_address.postal_code
+          session[:street_address] = @selected_shipping_address.street_address
+          session[:receive_name] = @selected_shipping_address.receive_name
+          redirect_to orders_confirm_order_path
+        end
+      elsif params[:selected_address] == "radio3"
+        session[:payment] = order_params[:payment]
+        session[:postal_code] = order_params[:postal_code]
+        session[:street_address] = order_params[:street_address]
+        session[:receive_name] = order_params[:receive_name]
+        # shipping_addressesのインスタンス（外部キーにclient＿idが入ってる）を作成
+        @shipping_address = @client.shipping_addresses.build
+        # shipping_addressesテーブルに保存
+        @shipping_address.postal_code = order_params[:postal_code]
+        @shipping_address.street_address = order_params[:street_address]
+        @shipping_address.receive_name = order_params[:receive_name]
+        if @shipping_address.save
+          flash[:success] = "新しいお届け先が保存されました"
+          redirect_to orders_confirm_order_path
+        else
+          flash[:danger] = "新しいお届け先の情報を正しく入力してください"
+          render :new
+        end
+      else # どのラジオボタンも選択されていないときは同じページに返す
+        flash[:danger] = "必要情報を入力してください"
+        redirect_back(fallback_location: root_path)
+      end
     end
   end
 

@@ -2,7 +2,6 @@
 	<div class="col-xs-3">
 		<%= render 'genre_serch_form', genres: @genres %>
     </div>
-
     <div class="col-xs-9">
     	<div>
     		<%= image_tag("cake/davide-carpani-cz6H-peo_E0-unsplash.jpeg", class: "top_image") %>
@@ -17,7 +16,6 @@
     	</div>
     	<div class="recommend">
     		<h2>オススメ商品</h2>
-
     		<% @products.each do |product| %>
 			    <div class="product-box">
 			    	<table class="table">

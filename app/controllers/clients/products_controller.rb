@@ -1,4 +1,5 @@
 class Clients::ProductsController < ApplicationController
+
   # ジャンルが有効かつ商品も販売中の商品のshowとupdateできないようにする
   before_action :ensure_enabled_product, only: [:show, :update]
   def index

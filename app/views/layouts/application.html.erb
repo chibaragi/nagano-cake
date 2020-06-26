@@ -1,4 +1,4 @@
-<%# 全て変更しました (飯田）%>
+<%# 全て変更しました (飯田）←消してください%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,35 +8,26 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
   </head>
   <body>
     <header class="navbar navbar-fixed-top">
       <div class="container">
-        <nav class="nav navbar-brand navbar-left header-logo">
-          <span><%#= image_tag('nagano_cafe_logo.PNG', class: 'shop_logo') %>NaganoCake</span>
-        </nav>
-            <% if client_signed_in? %>
-
-               <%= render 'layouts/header_client' %>
-
-            <% elsif admin_signed_in? %>
-              <%= render 'layouts/header_admin' %>
-            <% else %>
-              <%= render 'layouts/header_logout' %>
-            <% end %>
+        <% if client_signed_in? %>
+            <%= render 'layouts/header_client' %>
+        <% elsif admin_signed_in? %>
+          <%= render 'layouts/header_admin' %>
+        <% else %>
+          <%= render 'layouts/header_logout' %>
+        <% end %>
       </div>
     </header>
     <main>
       <div class="container main-container">
-
         <% flash.each do |message_type, message| %>
           <div class="alert alert-<%= message_type %>">
             <%= message %>
           </div>
         <% end %>  
-
-
         <%# 各ページ本体 %>
         <%= yield %>
       </div>
@@ -45,7 +36,7 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-3 col-xs-offset-9">
-            <p>CopyRight nagano-cafe.inc</p>
+            <p>CopyRight nagano-cafe.inc shop-logo made by <a href="https://www.designevo.com/jp/logo-maker/" title="無料オンラインロゴメーカー">DesignEvo</a> </>
           </div>
         </div>
       </div>
