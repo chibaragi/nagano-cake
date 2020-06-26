@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.describe "Admins::Clients", type: :request do
   describe "GET /show" do
     it "returns http success" do

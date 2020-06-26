@@ -3,10 +3,12 @@
 <%= form_for(@genre, url: admins_genre_path(@genre),html: {method: "patch"}) do |genre| %>
 
 	<%= genre.text_field :name %>
+	<label>
 	<%= genre.radio_button :is_enabled, :true %>有効
-
+	</label>
+	<label>
 	<%= genre.radio_button :is_enabled, :false %>無効
-
+	</label>
 	<%= genre.submit '変更を保存する' %>
 
 <% end %>

@@ -5,7 +5,7 @@ class Clients::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @inside_carts = InsideCart.new
+    @inside_cart = InsideCart.new
   end
 
   def top
