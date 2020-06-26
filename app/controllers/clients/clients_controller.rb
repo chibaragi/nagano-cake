@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Clients::ClientsController < ApplicationController
-
   def show
     @client = current_client
   end
@@ -23,15 +22,15 @@ class Clients::ClientsController < ApplicationController
     end
   end
 
-  def destroy #リソースを使用してルーティングを記述したため、logical_delete　から変更
+  def destroy # リソースを使用してルーティングを記述したため、logical_delete　から変更
     client = Client.find(params[:id])
     client.destroy
     redirect_to root_path, notice: "アカウントを削除しました"
   end
 
   private
-    def client_params
-      params.require(:client).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :phone_number, :postal_code, :street_address)
-    end
-end
 
+  def client_params
+    params.require(:client).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :phone_number, :postal_code, :street_address)
+  end
+end

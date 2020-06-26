@@ -13,8 +13,8 @@ class Admins::ProductsController < ApplicationController
       redirect_to admins_product_path(@product.id)
       flash[:success] = "商品を登録しました"
     else
-      render "admins/new"
-      flash[:danger] = "商品の登録に失敗しました"
+      flash[:danger] = "必要情報を入力してください"
+      render "admins/products/new"
     end
   end
 
@@ -27,13 +27,13 @@ class Admins::ProductsController < ApplicationController
   end
 
   def update
-    product = Product.find(params[:id])
-    if product.update(product_params)
-      redirect_to admins_product_path(product)
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+      redirect_to admins_product_path(@product)
       flash[:success] = "商品を更新しました"
     else # if文でエラー発生時と正常時のリンク先を枝分かれにしている。
-      render "admins/edit"
       flash[:danger] = "商品の更新に失敗しました"
+      render "admins/products/edit"
     end
   end
 

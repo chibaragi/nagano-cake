@@ -1,8 +1,9 @@
 <div class="row">
     <div class="col-xs-3">
+        <%= render 'genre_serch_form', genres: @genres %>
     </div>
 	<div class="col-xs-9">
-		<h2>商品一覧<%= "全#{Product.count}件" %></h2>
+		<h2>商品一覧<%= "（全#{@products_all.count}件）" %></h2>
 		<% @products.each do |product| %>
 		    <div class="product-box">
                 <table class="table">
@@ -16,7 +17,7 @@
                         <th><%= link_to product.name, product_path(product) %></th>
                     </tr>
                     <tr>
-                        <th><%= (product.price * 1.1).to_i %>円（税込）</th>
+                        <th>￥<%= (product.price * 1.1).to_i %></th>
                     </tr>
                 </table>
 		    </div>
