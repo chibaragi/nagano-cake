@@ -1,24 +1,68 @@
-# README
+# Nagano-cake
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ ≪ながのCAKE≫の商品を通販するためのECサイト。
 
-Things you may want to cover:
+## 概要
 
-* Ruby version
+　顧客側の機能
+　　	*アカウント作成なしでながのCAKEの商品の閲覧が可能。
+　  *通販を利用する場合は、お客様にアカウント作成をして頂き、商品をカートに入れ注文が可能。
+  　*商品の配送先は自宅以外にも登録ができ、プレゼントとして配送することも可能。
+  	*注文から届くまでの状況を注文ステータスとして確認が可能。
 
-* System dependencies
+　管理者側の機能
+　　	*商品、ジャンル、顧客情報の編集が可能。
+　　	*お客様からの注文の管理、配送までの管理が可能。
 
-* Configuration
 
-* Database creation
+## 機能
 
-* Database initialization
+- deviceを使用したログイン機能
+- paranoiaを使用した論理削除の実装
+- gemを使用せず顧客側、管理者側の双方実装
 
-* How to run the test suite
+　他の機能はこちらを参照して下さい。
+（https://s3-ap-northeast-1.amazonaws.com/wals/uploads/1147/functions_list.pdf）
 
-* Services (job queues, cache servers, search engines, etc.)
+## 必要要件
 
-* Deployment instructions
+　こちらを参照してください。
+（https://s3-ap-northeast-1.amazonaws.com/wals/uploads/1147/functions_list.pdf）
 
-* ...
+## 使い方
+
+1. 使い方
+2. 使い方
+3. 使い方
+
+## バージョン
+　Rails 5.2.4.3
+　ruby 2.5.7
+
+## インストール
+```
+$ git clone git@github.com:chibaragi/nagano-cake.git
+$ cd nagano-cake
+$ rails db:migrate
+$ rails db:seed
+$ bundle install
+```
+
+## テスト
+
+ こちらを参照してください。
+ （file:///C:/Users/geruharuto21/Desktop/nagano-cake%E3%83%86%E3%82%B9%E3%83%88%E9%A0%85%E7%9B%AE.htm）
+
+## その他
+ 
+その他その他その他その他
+その他その他その他その他
+その他その他その他その他
+その他その他その他その他
+ 
+## 作者
+
+　飯田恭子
+　西橋充樹
+　佐々木貫二郎
+　伊藤堅亮
