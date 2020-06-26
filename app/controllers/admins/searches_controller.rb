@@ -4,9 +4,9 @@ class Admins::SearchesController < ApplicationController
     @range = params[:range]
     # search = params[:search]
     @word = params[:word]
-
+    # 論理削除済の顧客を含めてsearchするために.with_deletedを追記しました。byけんちゃん
     if @range == '1'
-      @clients = Client.search(@word)
+      @clients = Client.with_deleted.search(@word)
     elsif @range == '2'
       @products = Product.search(@word)
     else

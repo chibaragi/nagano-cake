@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Clients::ClientsController < ApplicationController
+
+  before_action :authenticate_client!
+
   def show
     @client = current_client
   end
@@ -16,8 +19,10 @@ class Clients::ClientsController < ApplicationController
   def update
     @client = Client.find(params[:id])
     if @client.update(client_params)
-      redirect_to client_path(current_client.id), notice: "個人情報を編集しました"
+      flash[:success] = "個人情報を編集しました"
+      redirect_to client_path(current_client.id)
     else
+      flash[:danger] = '個人情報の編集に失敗しました'
       render :edit
     end
   end
@@ -25,7 +30,8 @@ class Clients::ClientsController < ApplicationController
   def destroy # リソースを使用してルーティングを記述したため、logical_delete　から変更
     client = Client.find(params[:id])
     client.destroy
-    redirect_to root_path, notice: "アカウントを削除しました"
+    flash[:success] = "アカウントを削除しました"
+    redirect_to root_path
   end
 
   private

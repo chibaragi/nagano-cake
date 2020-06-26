@@ -16,7 +16,9 @@ class Clients::ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @inside_cart = InsideCart.new
+    
     @genres = Genre.where(is_enabled: true)
+
   end
 
   def top
