@@ -16,7 +16,7 @@
     <%= link_to "=>パスワードを忘れた方はこちら", new_client_password_path %><br>
 
     <div class="actions">
-      <%= f.submit "ログイン" %>
+      <%= f.submit "ログイン", class: "btn btn-primary" %>
     </div>
   <% end %>
 
@@ -25,3 +25,4 @@
   <%= link_to "こちら", new_client_registration_path %>
   <span> から新規登録を行ってください。</span>
 </div>
+

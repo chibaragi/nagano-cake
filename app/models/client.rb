@@ -23,8 +23,10 @@ class Client < ApplicationRecord
   validates :postal_code, format: { with: /\A\d{7}\z/ }
   # アカウント作成時の郵便番号はハイフンなしの7桁のみ登録可能とするバリデーション
 
+  # 書き直しました（飯田）
   # 検索機能（部分検索）
   def self.search(word)
-    Client.where(["first_name LIKE? OR last_name LIKE?", "%#{word}%", "%#{word}%"])
+    Client.where(["first_name LIKE? OR last_name LIKE? OR first_name_kana LIKE? OR last_name_kana LIKE?", "%#{word}%", "%#{word}%", "%#{word}%", "%#{word}%"])
   end
+  # ここまで
 end

@@ -47,7 +47,7 @@ class Clients::OrdersController < ApplicationController
           redirect_to orders_confirm_order_path
         else
           flash[:danger] = "新しいお届け先の情報を正しく入力してください"
-          render :new
+          redirect_back(fallback_location: root_path)
         end
       else # どのラジオボタンも選択されていないときは同じページに返す
         flash[:danger] = "必要情報を入力してください"
