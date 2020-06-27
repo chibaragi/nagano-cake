@@ -1,0 +1,92 @@
+// Place all the styles related to the clients/products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.main-visual {
+	background-image: url(amber-faust-difFvlZVYTI-unsplash.jpeg);
+}
+// 下記追加
+.detail {
+	float: left;
+	margin-left: 30px;
+}
+// ここまで
+.detail span {
+	font-size: 10px;
+}
+.product-box {
+	float: left;
+}
+.column {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.product-image {
+	float: left;
+}
+.main-visual {
+    width: 500px;
+    height: 70px;
+}
+.index-link {
+	float: right;
+}
+.top_image {
+	width: 90%;
+	margin-bottom: 30px;
+}
+.recommend h2{
+	padding-top: 40px;
+}
+// 下記追加
+.main-visual-text{
+	color:#B72025;
+	width:90%;
+	margin-left:45%;
+	font-size: 1.8rem;
+}
+.top_image{
+	border-radius: 8%;
+}
+.quantity-select-form{
+	margin-right:50px;
+}
+.product-price{
+	margin-bottom: 50px;
+}
+@media (max-width: 767px) {
+	.main-visual-text{
+		font-size: 1rem;
+		margin-left:15%;
+	}
+}
+// ここまで
+// 以下、ジャンル検索部分テンプレート
+
+.genre_search_table{
+	text-align: center;
+	color:#B72025;
+}
+.genre_search_list{
+	list-style-type: none;
+}
+.genre_search_name{
+	color:#B72025;
+	&:hover{
+		color:#B72025;
+		text-decoration: none;
+	}
+}
+.genre_search_head{
+	text-align: center;
+	font-size: 2rem;
+	color:#B72025;
+	background-color: rgb(245, 245, 159);
+}
+.table-body{
+	&:hover{
+		background-color: #eee;
+	}
+}

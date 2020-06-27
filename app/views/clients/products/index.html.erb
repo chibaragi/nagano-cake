@@ -1,0 +1,29 @@
+<div class="row login-row">
+    <div class="col-xs-3">
+        <%= render 'genre_serch_form', genres: @genres %>
+    </div>
+    <div class="col-xs-9">
+        <h2>商品一覧<%= "（全#{@products_all.count}件）" %></h2>
+        <% @products.each do |product| %>
+            <div class="product-box">
+                <table class="table">
+                    <tr>
+                        <th><%= link_to product_path(product) do %>
+                        <%# 変更しました（飯田） %>
+                            <%= attachment_image_tag(product, :image,size: "180x130", fallback: "no_image.jpg") %>
+                            <%# ここまで %>
+                            <% end %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th><%= link_to product.name, product_path(product) %></th>
+                    </tr>
+                    <tr>
+                        <th>￥<%= (product.price * 1.1).to_i %></th>
+                    </tr>
+                </table>
+            </div>
+        <% end %>
+        <%= paginate @products %>
+    </div>
+</div>
