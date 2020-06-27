@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Admins::ClientsController < ApplicationController
-
   before_action :authenticate_admin!
 
   # 全体を通して記述している「.with_deleted」は論理削除したテーブルを含めるための記述。
