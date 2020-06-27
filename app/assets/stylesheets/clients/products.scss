@@ -6,9 +6,12 @@
 .main-visual {
 	background-image: url(amber-faust-difFvlZVYTI-unsplash.jpeg);
 }
+// 下記追加
 .detail {
 	float: left;
+	margin-left: 30px;
 }
+// ここまで
 .detail span {
 	font-size: 10px;
 }
@@ -35,9 +38,31 @@
 	margin-bottom: 30px;
 }
 .recommend h2{
-	padding-top: 30px;
+	padding-top: 40px;
 }
-
+// 下記追加
+.main-visual-text{
+	color:#B72025;
+	width:90%;
+	margin-left:45%;
+	font-size: 1.8rem;
+}
+.top_image{
+	border-radius: 8%;
+}
+.quantity-select-form{
+	margin-right:50px;
+}
+.product-price{
+	margin-bottom: 50px;
+}
+@media (max-width: 767px) {
+	.main-visual-text{
+		font-size: 1rem;
+		margin-left:15%;
+	}
+}
+// ここまで
 // 以下、ジャンル検索部分テンプレート
 
 .genre_search_table{

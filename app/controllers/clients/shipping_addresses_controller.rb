@@ -10,14 +10,20 @@ class Clients::ShippingAddressesController < ApplicationController
     @shipping_address = ShippingAddress.find(params[:id])
   end
 
+  # 飯田がcreate変更
   def create
     shipping_address = ShippingAddress.new(shipping_address_params)
     shipping_address.client_id = current_client.id
-    shipping_address.save
-    flash[:danger] =
-      '必要情報を入力してください／ハイフンは使用できません'
-    redirect_to new_shipping_address_path
+    if shipping_address.save
+      flash[:success] = '配送先を登録しました'
+      redirect_to new_shipping_address_path
+    else
+      flash[:danger] =
+        '必要情報を入力してください／ハイフンは使用できません'
+      redirect_to new_shipping_address_path
+    end
   end
+  # ここまで
 
   def update
     shipping_address = ShippingAddress.find(params[:id])
