@@ -29,9 +29,7 @@
             </div>
             <div class="field">
             	<%= f.label :ジャンル %>
-                <%# 変更しました（飯田） %>
             	<%= f.collection_select(:genre_id, Genre.where(is_enabled: true), :id, :name, prompt: "選択してください") %>
-                <%# ここまで %>
             </div>
             <div class="field">
             	<%= f.label :税抜価格 %>
