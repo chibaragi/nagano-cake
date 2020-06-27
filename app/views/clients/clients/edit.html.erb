@@ -40,12 +40,14 @@
 				 <div class="field">
 				    <%= f.label :電話番号（ハイフンなし） %><br />
 				    <%= f.text_field :phone_number, autofocus: true, autocomplete: "email" %>
+				 </div>
 
 				    <%= f.submit "編集内容を保存する", class: "btn btn-primary"%>
 
-				 </div>
 			<% end %>
-			<%= link_to "退会する", clients_withdrawal_path, class: "btn btn-primary"%>
+
+
+				<%= link_to "退会する", clients_withdrawal_path, class: "btn btn-danger withdrawal_page_btn"%>
 		</div>
 	</div>
 </div>
