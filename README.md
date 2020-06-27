@@ -33,6 +33,10 @@
 　こちらを参照してください。
 （https://s3-ap-northeast-1.amazonaws.com/wals/uploads/1147/functions_list.pdf）
 
+## 使い方
+
+　管理者、顧客側それぞれログインはメールアドレスを【chibaragi@yahoo.co.jp】、パスワードは【aaaaaa】で使用できます。
+　顧客側の場合、新規作成で好きなアカウントを作成しても利用が可能です。
 
 ## バージョン
 　Rails 5.2.4.3
