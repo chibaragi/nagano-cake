@@ -22,5 +22,4 @@ class Product < ApplicationRecord
   def self.search(word)
     Product.where("name LIKE?", "%#{word}%")
   end
- 
 end

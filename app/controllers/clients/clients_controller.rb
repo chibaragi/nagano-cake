@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Clients::ClientsController < ApplicationController
-
   before_action :authenticate_client!
 
   def show

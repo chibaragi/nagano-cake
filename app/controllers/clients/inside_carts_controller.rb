@@ -1,5 +1,4 @@
 class Clients::InsideCartsController < ApplicationController
-
   before_action :authenticate_client!
   def create
     @inside_carts = current_client.inside_carts.all

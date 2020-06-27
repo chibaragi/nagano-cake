@@ -26,7 +26,7 @@ class Client < ApplicationRecord
   # 書き直しました（飯田）
   # 検索機能（部分検索）
   def self.search(word)
-    Client.where(["first_name LIKE? OR last_name LIKE? OR first_name_kana LIKE? OR last_name_kana LIKE?", "%#{word}%", "%#{word}%","%#{word}%","%#{word}%"])
+    Client.where(["first_name LIKE? OR last_name LIKE? OR first_name_kana LIKE? OR last_name_kana LIKE?", "%#{word}%", "%#{word}%", "%#{word}%", "%#{word}%"])
   end
   # ここまで
 end
