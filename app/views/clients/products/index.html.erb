@@ -3,15 +3,13 @@
         <%= render 'genre_serch_form', genres: @genres %>
     </div>
     <div class="col-xs-9">
-        <h2>商品一覧<%= "（全#{@products_all.count}件）" %></h2>
+        <h2><%= "#{@index}一覧 （全#{@products_all.count}件）" %></h2>
         <% @products.each do |product| %>
             <div class="product-box">
                 <table class="table">
                     <tr>
                         <th><%= link_to product_path(product) do %>
-                        <%# 変更しました（飯田） %>
                             <%= attachment_image_tag(product, :image,size: "180x130", fallback: "no_image.jpg") %>
-                            <%# ここまで %>
                             <% end %>
                         </th>
                     </tr>
