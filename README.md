@@ -50,12 +50,6 @@ $ rails db:migrate
 $ rails db:seed
 $ bundle install
 ```
-
-## テスト
-
- こちらを参照してください。
- （file:///C:/Users/geruharuto21/Desktop/nagano-cake%E3%83%86%E3%82%B9%E3%83%88%E9%A0%85%E7%9B%AE.htm）
-
  
 ## 作者
 
